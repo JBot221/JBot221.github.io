@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ✨ POLVO DORADO DE FONDO */
+/* ✨ POLVO DORADO */
 .sparkle{
   position:fixed;
   top:-10vh;
@@ -31,9 +31,7 @@ body{
   pointer-events:none;
   z-index:0;
 }
-@keyframes fall{
-  to{transform:translateY(120vh)}
-}
+@keyframes fall{to{transform:translateY(120vh)}}
 
 /* HERO */
 .hero{
@@ -49,14 +47,12 @@ body{
   z-index:1;
 }
 
-/* TITULOS */
 .hero h2{
   letter-spacing:4px;
   font-weight:300;
   color:#c9b26d;
 }
 
-/* ✨ NOMBRE – BRILLO + ENTRADA */
 .hero h1{
   font-family:'Cinzel',serif;
   font-size:3.2rem;
@@ -77,12 +73,8 @@ body{
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
-
 @keyframes titleEnter{
-  to{
-    opacity:1;
-    transform:scale(1) translateY(0);
-  }
+  to{opacity:1;transform:scale(1) translateY(0);}
 }
 
 /* SECTIONS */
@@ -119,23 +111,48 @@ body{
   display:flex;
   justify-content:space-between;
 }
+
 .flip{
-  perspective:600px;
+  perspective:1000px;
   width:70px;
 }
-.flip-inner{
+
+.flip-card{
+  position:relative;
+  width:100%;
+  height:70px;
+  transform-style:preserve-3d;
+  transition:transform 0.6s ease-in-out;
+}
+
+.flip.fast .flip-card{ transition:transform .35s ease-in-out; }
+.flip.medium .flip-card{ transition:transform .7s ease-in-out; }
+.flip.slow .flip-card{ transition:transform 1.4s ease-in-out; }
+
+.flip-card.flipping{
+  transform:rotateX(-180deg);
+}
+
+.flip-face{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
   background:rgba(0,0,0,.35);
   border-radius:12px;
-  padding:12px 0;
-  transition:transform .6s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
-.flip.fast .flip-inner{transition:.3s}
-.flip.medium .flip-inner{transition:.6s}
-.flip.slow .flip-inner{transition:1.2s}
+
+.flip-back{
+  transform:rotateX(180deg);
+}
+
 .flip span{
   font-size:1.7rem;
   color:#3dd6b5;
-  display:block;
 }
 .flip small{
   font-size:.7rem;
@@ -200,127 +217,86 @@ body{
 <button class="music-btn" id="musicBtn">🔊</button>
 <audio id="bgMusic" src="cancion.mp3" loop></audio>
 
-<!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
 </section>
 
-<!-- CONTADOR -->
 <section class="section">
   <div class="card">
     <h3>Falta</h3>
     <div class="countdown">
-      <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
-      <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
-      <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
-      <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
+
+      <div class="flip slow" id="flip-days">
+        <div class="flip-card">
+          <div class="flip-face flip-front"><span>0</span><small>Días</small></div>
+          <div class="flip-face flip-back"><span>0</span><small>Días</small></div>
+        </div>
+      </div>
+
+      <div class="flip medium" id="flip-hours">
+        <div class="flip-card">
+          <div class="flip-face flip-front"><span>0</span><small>Horas</small></div>
+          <div class="flip-face flip-back"><span>0</span><small>Horas</small></div>
+        </div>
+      </div>
+
+      <div class="flip medium" id="flip-minutes">
+        <div class="flip-card">
+          <div class="flip-face flip-front"><span>0</span><small>Min</small></div>
+          <div class="flip-face flip-back"><span>0</span><small>Min</small></div>
+        </div>
+      </div>
+
+      <div class="flip fast" id="flip-seconds">
+        <div class="flip-card">
+          <div class="flip-face flip-front"><span>0</span><small>Seg</small></div>
+          <div class="flip-face flip-back"><span>0</span><small>Seg</small></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- REGALO -->
-<section class="section">
-  <div class="card">
-    <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
-    <h3>esme.riva.mp</h3>
-  </div>
-</section>
-
-<!-- VESTIMENTA -->
-<section class="section">
-  <div class="card">
-    <h3>Vestimenta</h3>
-    <p>Elegante · Total Black</p>
-    <img src="oufit.jfif" class="outfit-img">
-  </div>
-</section>
-
-<!-- UBICACIÓN -->
-<section class="section">
-  <div class="card">
-    <h3>Ubicación</h3>
-    <p><b>Crazy Night Party</b><br>Ricardo Rojas 765<br>Arrecifes, Buenos Aires</p>
-
-    <iframe class="map"
-      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
-      loading="lazy">
-    </iframe>
-
-    <a class="btn" target="_blank"
-      href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
-      Abrir en Google Maps 📍
-    </a>
-  </div>
-</section>
-
-<!-- CONFIRMAR -->
-<section class="section">
-  <div class="card">
-    <h3>Confirmar asistencia</h3>
-    <a class="btn"
-      href="https://wa.me/5492478543904?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20tus%2015%20✨"
-      target="_blank">
-      Confirmar por WhatsApp 💬
-    </a>
-  </div>
-</section>
-
-<div class="footer">Esmeralda · Mis 15 ✨</div>
-
 <script>
-/* CONTADOR */
 const eventDate=new Date("2026-04-25T21:00:00-03:00").getTime();
-setInterval(()=>{
-  const d=eventDate-Date.now();
-  if(d<0)return;
-  days.textContent=Math.floor(d/86400000);
-  hours.textContent=Math.floor(d/3600000)%24;
-  minutes.textContent=Math.floor(d/60000)%60;
-  seconds.textContent=Math.floor(d/1000)%60;
-},1000);
 
-/* ANIMACIONES */
-const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
-},{threshold:.2});
-document.querySelectorAll(".section").forEach(s=>obs.observe(s));
+function updateFlip(id,value){
+  const flip=document.querySelector(id);
+  const card=flip.querySelector(".flip-card");
+  const front=flip.querySelector(".flip-front span");
+  const back=flip.querySelector(".flip-back span");
 
-/* MÚSICA */
-const music=document.getElementById("bgMusic");
-const btn=document.getElementById("musicBtn");
-let activated=false;
+  if(front.textContent==value) return;
 
-function activateMusic(){
-  if(activated)return;
-  music.volume=0;
-  music.play();
-  let v=0;
-  const fade=setInterval(()=>{
-    v+=0.04;
-    music.volume=Math.min(v,0.8);
-    if(v>=0.8)clearInterval(fade);
-  },200);
-  activated=true;
+  back.textContent=value;
+  card.classList.add("flipping");
+
+  setTimeout(()=>{
+    front.textContent=value;
+    card.classList.remove("flipping");
+  }, getComputedStyle(card).transitionDuration.replace("s","")*1000);
 }
-document.addEventListener("click",activateMusic,{once:true});
-document.addEventListener("scroll",activateMusic,{once:true});
 
-btn.onclick=()=>{
-  music.muted=!music.muted;
-  btn.textContent=music.muted?"🔇":"🔊";
-};
+function updateCountdown(){
+  const diff=eventDate-Date.now();
+  if(diff<=0)return;
 
-/* GENERAR BRILLOS (YA ACTIVOS) */
-for(let i=0;i<45;i++){
-  const s=document.createElement("div");
-  s.className="sparkle";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=(8+Math.random()*10)+"s";
-  s.style.opacity=Math.random()*0.6+0.2;
-  document.body.appendChild(s);
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff/3600000)%24;
+  const m=Math.floor(diff/60000)%60;
+  const s=Math.floor(diff/1000)%60;
+
+  updateFlip("#flip-days",d);
+  updateFlip("#flip-hours",h);
+  updateFlip("#flip-minutes",m);
+  updateFlip("#flip-seconds",s);
 }
+
+setInterval(updateCountdown,1000);
+updateCountdown();
 </script>
 
 </body>
