@@ -42,7 +42,6 @@ body{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  position:relative;
   z-index:1;
 }
 
@@ -65,7 +64,7 @@ body{
   100%{background-position:0%}
 }
 @keyframes titleEnter{
-  to{opacity:1;transform:none}
+  to{opacity:1}
 }
 
 /* SECTIONS */
@@ -124,39 +123,22 @@ body{
   border-radius:12px;
   backface-visibility:hidden;
 }
-.flip-face.back{
-  transform:rotateX(180deg);
-}
+.flip-face.back{transform:rotateX(180deg)}
 
 .flip span{font-size:1.7rem;color:#3dd6b5}
 .flip small{font-size:.7rem;opacity:.7}
 
-/* velocidades */
-.flip.fast   .flip-card{transition:transform .35s ease-in-out}
-.flip.medium .flip-card{transition:transform .55s ease-in-out}
-.flip.slow   .flip-card{transition:transform .8s ease-in-out}
+.flip.fast   .flip-card{transition:transform .35s ease}
+.flip.medium .flip-card{transition:transform .55s ease}
+.flip.slow   .flip-card{transition:transform .8s ease}
 
 .flip.animate .flip-card{
   transform:rotateX(-180deg);
 }
 
-/* IMG */
-.outfit-img{
-  width:100%;
-  border-radius:16px;
-  margin-top:18px;
-}
-
-/* MAP */
-.map{
-  width:100%;
-  height:260px;
-  border-radius:16px;
-  border:none;
-  margin-top:18px;
-}
-
-/* BTN */
+/* EXTRAS */
+.outfit-img{width:100%;border-radius:16px;margin-top:18px}
+.map{width:100%;height:260px;border-radius:16px;border:none;margin-top:18px}
 .btn{
   display:inline-block;
   margin-top:22px;
@@ -167,29 +149,18 @@ body{
   font-weight:600;
   border-radius:40px;
 }
-
-/* MUSIC */
 .music-btn{
   position:fixed;
-  bottom:18px;
-  right:18px;
-  width:44px;
-  height:44px;
+  bottom:18px;right:18px;
+  width:44px;height:44px;
+  border-radius:50%;
   background:rgba(255,255,255,.08);
   border:none;
-  border-radius:50%;
   color:#c9b26d;
   font-size:18px;
   z-index:10;
 }
-
-.footer{
-  padding:30px;
-  font-size:.8rem;
-  opacity:.5;
-  position:relative;
-  z-index:1;
-}
+.footer{padding:30px;font-size:.8rem;opacity:.5}
 </style>
 </head>
 
@@ -205,97 +176,40 @@ body{
 </section>
 
 <section class="section">
-  <div class="card">
-    <h3>Falta</h3>
-    <div class="countdown">
+<div class="card">
+<h3>Falta</h3>
 
-      <div class="flip slow" data-unit="days">
-        <div class="flip-card">
-          <div class="flip-face front"><span>0</span><small>Días</small></div>
-          <div class="flip-face back"><span>0</span><small>Días</small></div>
-        </div>
-      </div>
+<div class="countdown">
+  <div class="flip slow" data-unit="days"><div class="flip-card">
+    <div class="flip-face front"><span>0</span><small>Días</small></div>
+    <div class="flip-face back"><span>0</span><small>Días</small></div>
+  </div></div>
 
-      <div class="flip slow" data-unit="hours">
-        <div class="flip-card">
-          <div class="flip-face front"><span>0</span><small>Horas</small></div>
-          <div class="flip-face back"><span>0</span><small>Horas</small></div>
-        </div>
-      </div>
+  <div class="flip slow" data-unit="hours"><div class="flip-card">
+    <div class="flip-face front"><span>0</span><small>Horas</small></div>
+    <div class="flip-face back"><span>0</span><small>Horas</small></div>
+  </div></div>
 
-      <div class="flip medium" data-unit="minutes">
-        <div class="flip-card">
-          <div class="flip-face front"><span>0</span><small>Min</small></div>
-          <div class="flip-face back"><span>0</span><small>Min</small></div>
-        </div>
-      </div>
+  <div class="flip medium" data-unit="minutes"><div class="flip-card">
+    <div class="flip-face front"><span>0</span><small>Min</small></div>
+    <div class="flip-face back"><span>0</span><small>Min</small></div>
+  </div></div>
 
-      <div class="flip fast" data-unit="seconds">
-        <div class="flip-card">
-          <div class="flip-face front"><span>0</span><small>Seg</small></div>
-          <div class="flip-face back"><span>0</span><small>Seg</small></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="card">
-    <p>Tu presencia es muy importante,<br>
-    pero si deseás hacerme un regalo,<br>
-    este es mi alias:</p>
-    <h3>esme.riva.mp</h3>
-  </div>
-</section>
-
-<section class="section">
-  <div class="card">
-    <h3>Vestimenta</h3>
-    <p>Elegante · Total Black</p>
-    <img src="oufit.jfif" class="outfit-img">
-  </div>
-</section>
-
-<section class="section">
-  <div class="card">
-    <h3>Ubicación</h3>
-    <p><b>Crazy Night Party</b><br>
-    Ricardo Rojas 765<br>
-    Arrecifes, Buenos Aires</p>
-
-    <iframe class="map"
-      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
-      loading="lazy"></iframe>
-
-    <a class="btn" target="_blank"
-      href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
-      Abrir en Google Maps 📍
-    </a>
-  </div>
-</section>
-
-<section class="section" style="padding-top:40px">
-  <div class="card">
-    <h3>Confirmar asistencia</h3>
-    <a class="btn"
-      href="https://wa.me/5492478543904?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20tus%2015%20✨"
-      target="_blank">
-      Confirmar por WhatsApp 💬
-    </a>
-  </div>
+  <div class="flip fast" data-unit="seconds"><div class="flip-card">
+    <div class="flip-face front"><span>0</span><small>Seg</small></div>
+    <div class="flip-face back"><span>0</span><small>Seg</small></div>
+  </div></div>
+</div>
+</div>
 </section>
 
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-/* CONTADOR FLIP DEFINITIVO */
+/* 🔒 CONTADOR SIN DOBLE FLIP */
 const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
-
-document.querySelectorAll(".flip").forEach(f=>{
-  f.dataset.animating="false";
-});
+const lastValues = {};
+let initialized = false;
 
 function updateCountdown(){
   const d = eventDate - Date.now();
@@ -313,55 +227,37 @@ function updateCountdown(){
     const front = f.querySelector(".front span");
     const back  = f.querySelector(".back span");
 
-    if(front.textContent != values[unit] && f.dataset.animating==="false"){
-      f.dataset.animating="true";
+    if(!initialized){
+      front.textContent = values[unit];
+      back.textContent  = values[unit];
+      lastValues[unit]  = values[unit];
+      return;
+    }
+
+    if(values[unit] !== lastValues[unit]){
       back.textContent = values[unit];
       f.classList.add("animate");
-
-      const dur = parseFloat(
-        getComputedStyle(f.querySelector(".flip-card")).transitionDuration
-      ) * 1000;
 
       setTimeout(()=>{
         front.textContent = values[unit];
         f.classList.remove("animate");
-        f.dataset.animating="false";
-      }, dur);
+      },600);
+
+      lastValues[unit] = values[unit];
     }
   });
+
+  initialized = true;
 }
 
 updateCountdown();
 setInterval(updateCountdown,1000);
 
-/* ANIMACIONES */
-const obs = new IntersectionObserver(e=>{
+/* OBS */
+const obs=new IntersectionObserver(e=>{
   e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
 },{threshold:.2});
 document.querySelectorAll(".section").forEach(s=>obs.observe(s));
-
-/* MÚSICA */
-const music=document.getElementById("bgMusic");
-const btn=document.getElementById("musicBtn");
-let activated=false;
-
-document.addEventListener("click",()=>{
-  if(activated) return;
-  music.volume=0;
-  music.play();
-  let v=0;
-  const fade=setInterval(()=>{
-    v+=0.04;
-    music.volume=Math.min(v,0.8);
-    if(v>=0.8) clearInterval(fade);
-  },200);
-  activated=true;
-},{once:true});
-
-btn.onclick=()=>{
-  music.muted=!music.muted;
-  btn.textContent=music.muted?"🔇":"🔊";
-};
 
 /* BRILLOS */
 for(let i=0;i<45;i++){
