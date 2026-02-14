@@ -18,24 +18,6 @@ body{
   overflow-x:hidden;
 }
 
-/* POLVO DORADO */
-.gold-dust{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-}
-.gold-dust span{
-  position:absolute;
-  width:2px;height:2px;
-  background:rgba(201,178,109,.45);
-  animation:fall linear infinite;
-}
-@keyframes fall{
-  from{transform:translateY(-10vh)}
-  to{transform:translateY(110vh)}
-}
-
 /* HERO */
 .hero{
   height:100vh;
@@ -46,19 +28,36 @@ body{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  position:relative;
-  z-index:1;
 }
+
+/* TITULOS */
 .hero h2{
   letter-spacing:4px;
   font-weight:300;
   color:#c9b26d;
 }
+
+/* ✨ BRILLO DORADO SOLO EN EL NOMBRE */
 .hero h1{
   font-family:'Cinzel',serif;
   font-size:3.2rem;
   margin:10px 0;
-  color:#3dd6b5;
+  background:linear-gradient(
+    120deg,
+    #2fd1b0,
+    #c9b26d,
+    #2fd1b0
+  );
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:goldShine 6s ease-in-out infinite;
+}
+
+@keyframes goldShine{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 /* SECTIONS */
@@ -67,8 +66,6 @@ body{
   opacity:0;
   transform:translateY(40px);
   transition:all .9s ease;
-  position:relative;
-  z-index:1;
 }
 .section.visible{
   opacity:1;
@@ -88,7 +85,6 @@ body{
 .card h3{
   font-family:'Cinzel',serif;
   color:#c9b26d;
-  margin-bottom:15px;
 }
 
 /* COUNTDOWN */
@@ -172,10 +168,7 @@ body{
 
 <body>
 
-<div class="gold-dust" id="gold"></div>
-
 <button class="music-btn" id="musicBtn">🔊</button>
-
 <audio id="bgMusic" src="cancion.mp3" loop></audio>
 
 <!-- HERO -->
@@ -229,11 +222,13 @@ body{
       Arrecifes, Buenos Aires
     </p>
 
-    <iframe class="map" loading="lazy"
-      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed">
+    <iframe class="map"
+      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
+      loading="lazy">
     </iframe>
 
-    <a class="btn" target="_blank"
+    <a class="btn"
+      target="_blank"
       href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
       Abrir en Google Maps 📍
     </a>
@@ -255,21 +250,10 @@ body{
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-/* POLVO DORADO */
-const gold=document.getElementById("gold");
-for(let i=0;i<80;i++){
-  const s=document.createElement("span");
-  s.style.left=Math.random()*100+"%";
-  s.style.animationDuration=12+Math.random()*18+"s";
-  s.style.opacity=Math.random();
-  gold.appendChild(s);
-}
-
 /* CONTADOR */
 const eventDate=new Date("2026-04-25T21:00:00-03:00").getTime();
 setInterval(()=>{
-  const now=Date.now();
-  const d=eventDate-now;
+  const d=eventDate-Date.now();
   if(d<0)return;
   days.textContent=Math.floor(d/86400000);
   hours.textContent=Math.floor(d/3600000)%24;
@@ -277,20 +261,18 @@ setInterval(()=>{
   seconds.textContent=Math.floor(d/1000)%60;
 },1000);
 
-/* ANIMACIONES REUTILIZABLES */
+/* ANIMACIONES */
 const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>{
-    x.target.classList.toggle("visible",x.isIntersecting);
-  });
+  e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
 },{threshold:.2});
 document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 
-/* MÚSICA */
+/* MÚSICA – CLICK O SCROLL */
 const music=document.getElementById("bgMusic");
 const btn=document.getElementById("musicBtn");
 let activated=false;
 
-document.addEventListener("click",()=>{
+function activateMusic(){
   if(activated)return;
   music.volume=0;
   music.play();
@@ -301,7 +283,10 @@ document.addEventListener("click",()=>{
     if(v>=0.8)clearInterval(fade);
   },200);
   activated=true;
-});
+}
+
+document.addEventListener("click",activateMusic,{once:true});
+document.addEventListener("scroll",activateMusic,{once:true});
 
 btn.onclick=()=>{
   music.muted=!music.muted;
