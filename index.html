@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ✨ POLVO DORADO */
+/* ✨ POLVO */
 .sparkle{
   position:fixed;
   top:-10vh;
@@ -36,15 +36,11 @@ body{
 /* HERO */
 .hero{
   height:100vh;
-  background:
-    radial-gradient(circle at top,rgba(201,178,109,.15),transparent 60%),
-    linear-gradient(180deg,#123a2f,#0f2f26);
+  background:linear-gradient(180deg,#123a2f,#0f2f26);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  position:relative;
-  z-index:1;
 }
 
 .hero h2{
@@ -53,43 +49,18 @@ body{
   color:#c9b26d;
 }
 
-/* NOMBRE */
 .hero h1{
   font-family:'Cinzel',serif;
   font-size:3.2rem;
   margin:10px 0;
-  background:linear-gradient(120deg,#2fd1b0,#c9b26d,#2fd1b0);
-  background-size:300% 300%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:goldShine 6s ease-in-out infinite, titleEnter 1.4s ease-out forwards;
-  opacity:0;
-  transform:scale(.85) translateY(20px);
-}
-@keyframes goldShine{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-@keyframes titleEnter{
-  to{opacity:1;transform:scale(1) translateY(0)}
-}
-
-/* SECTIONS */
-.section{
-  padding:80px 20px;
-  opacity:0;
-  transform:translateY(40px);
-  transition:.9s ease;
-  position:relative;
-  z-index:1;
-}
-.section.visible{
-  opacity:1;
-  transform:translateY(0);
+  color:#c9b26d;
 }
 
 /* CARD */
+.section{
+  padding:80px 20px;
+}
+
 .card{
   max-width:420px;
   margin:auto;
@@ -97,14 +68,14 @@ body{
   padding:30px;
   border-radius:22px;
   backdrop-filter:blur(8px);
-  box-shadow:0 15px 40px rgba(0,0,0,.35);
 }
+
 .card h3{
   font-family:'Cinzel',serif;
   color:#c9b26d;
 }
 
-/* ==== FLIP CLOCK ==== */
+/* ===== FLIP CLOCK REAL ===== */
 .countdown{
   display:flex;
   justify-content:space-between;
@@ -132,7 +103,6 @@ body{
   align-items:center;
   justify-content:center;
   backface-visibility:hidden;
-  transform-style:preserve-3d;
 }
 
 .top{
@@ -146,10 +116,11 @@ body{
 }
 
 .top span,.bottom span{
-  font-size:1.7rem;
+  font-size:1.8rem;
   color:#3dd6b5;
 }
 
+/* ANIMACIÓN */
 .flip.animate .top{
   transform-origin:bottom;
   animation:flipTop var(--speed) ease-in forwards;
@@ -161,60 +132,23 @@ body{
 }
 
 @keyframes flipTop{
-  from{transform:rotateX(0deg)}
   to{transform:rotateX(-90deg)}
 }
 
 @keyframes flipBottom{
   from{transform:rotateX(90deg)}
-  to{transform:rotateX(0deg)}
+  to{transform:rotateX(0)}
 }
 
 .label{
+  margin-top:6px;
   font-size:.7rem;
   opacity:.7;
-  margin-top:4px;
-}
-
-/* BUTTONS */
-.btn{
-  display:inline-block;
-  margin-top:22px;
-  padding:14px 32px;
-  background:linear-gradient(135deg,#3dd6b5,#c9b26d);
-  color:#0f2f26;
-  text-decoration:none;
-  font-weight:600;
-  border-radius:40px;
-}
-
-/* MUSIC */
-.music-btn{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  background:rgba(255,255,255,.08);
-  border:none;
-  border-radius:50%;
-  width:44px;
-  height:44px;
-  color:#c9b26d;
-  font-size:18px;
-  z-index:10;
-}
-
-.footer{
-  padding:30px;
-  font-size:.8rem;
-  opacity:.5;
 }
 </style>
 </head>
 
 <body>
-
-<button class="music-btn" id="musicBtn">🔊</button>
-<audio id="bgMusic" src="cancion.mp3" loop></audio>
 
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
@@ -224,18 +158,18 @@ body{
 
 <section class="section">
   <div class="card">
-    <h3>Falta</h3>
+    <h3>FALTA</h3>
     <div class="countdown">
-      <div class="flip" style="--speed:1.1s" id="days"></div>
-      <div class="flip" style="--speed:.8s" id="hours"></div>
-      <div class="flip" style="--speed:.5s" id="minutes"></div>
-      <div class="flip" style="--speed:.25s" id="seconds"></div>
+      <div class="flip" id="days" style="--speed:1.1s"></div>
+      <div class="flip" id="hours" style="--speed:.8s"></div>
+      <div class="flip" id="minutes" style="--speed:.5s"></div>
+      <div class="flip" id="seconds" style="--speed:.25s"></div>
     </div>
   </div>
 </section>
 
 <script>
-/* ==== FLIP SETUP ==== */
+/* ===== CREAR FLIP ===== */
 function createFlip(el,label){
   el.innerHTML = `
     <div class="flip-card">
@@ -250,7 +184,7 @@ createFlip(hours,"Horas");
 createFlip(minutes,"Min");
 createFlip(seconds,"Seg");
 
-/* ==== FLIP UPDATE ==== */
+/* ===== UPDATE LIMPIO (SIN DUPLICADOS) ===== */
 function updateFlip(el,value){
   const top = el.querySelector(".top span");
   const bottom = el.querySelector(".bottom span");
@@ -267,7 +201,7 @@ function updateFlip(el,value){
   }, speed);
 }
 
-/* ==== CONTADOR ==== */
+/* ===== CONTADOR ===== */
 const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
 
 setInterval(()=>{
@@ -280,36 +214,8 @@ setInterval(()=>{
   updateFlip(seconds, Math.floor(diff / 1000) % 60);
 },1000);
 
-/* ==== SCROLL ==== */
-const obs = new IntersectionObserver(e=>{
-  e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
-},{threshold:.2});
-document.querySelectorAll(".section").forEach(s=>obs.observe(s));
-
-/* ==== MUSIC ==== */
-const music = document.getElementById("bgMusic");
-const btn = document.getElementById("musicBtn");
-
-document.addEventListener("click",()=>{
-  if(music.paused){
-    music.volume=0;
-    music.play();
-    let v=0;
-    const f=setInterval(()=>{
-      v+=.04;
-      music.volume=Math.min(v,.8);
-      if(v>=.8) clearInterval(f);
-    },200);
-  }
-},{once:true});
-
-btn.onclick=()=>{
-  music.muted=!music.muted;
-  btn.textContent=music.muted?"🔇":"🔊";
-};
-
-/* ==== BRILLOS ==== */
-for(let i=0;i<45;i++){
+/* BRILLOS */
+for(let i=0;i<35;i++){
   const s=document.createElement("div");
   s.className="sparkle";
   s.style.left=Math.random()*100+"vw";
