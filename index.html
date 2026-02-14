@@ -42,6 +42,7 @@ body{
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  position:relative;
   z-index:1;
 }
 
@@ -73,6 +74,8 @@ body{
   opacity:0;
   transform:translateY(40px);
   transition:.9s ease;
+  position:relative;
+  z-index:1;
 }
 .section.visible{
   opacity:1;
@@ -100,7 +103,7 @@ body{
   justify-content:space-between;
 }
 
-/* FLIP REAL */
+/* FLIP */
 .flip{
   width:70px;
   perspective:1000px;
@@ -129,19 +132,29 @@ body{
 .flip small{font-size:.7rem;opacity:.7}
 
 /* velocidades */
-.flip.fast .flip-card{transition:transform .25s}
-.flip.medium .flip-card{transition:transform .5s}
-.flip.slow .flip-card{transition:transform .9s}
+.flip.fast   .flip-card{transition:transform .35s ease-in-out}
+.flip.medium .flip-card{transition:transform .55s ease-in-out}
+.flip.slow   .flip-card{transition:transform .8s ease-in-out}
 
 .flip.animate .flip-card{
   transform:rotateX(-180deg);
 }
 
 /* IMG */
-.outfit-img{width:100%;border-radius:16px;margin-top:18px}
+.outfit-img{
+  width:100%;
+  border-radius:16px;
+  margin-top:18px;
+}
 
 /* MAP */
-.map{width:100%;height:260px;border-radius:16px;border:none;margin-top:18px}
+.map{
+  width:100%;
+  height:260px;
+  border-radius:16px;
+  border:none;
+  margin-top:18px;
+}
 
 /* BTN */
 .btn{
@@ -158,17 +171,25 @@ body{
 /* MUSIC */
 .music-btn{
   position:fixed;
-  bottom:18px;right:18px;
-  width:44px;height:44px;
-  border-radius:50%;
+  bottom:18px;
+  right:18px;
+  width:44px;
+  height:44px;
   background:rgba(255,255,255,.08);
   border:none;
+  border-radius:50%;
   color:#c9b26d;
   font-size:18px;
   z-index:10;
 }
 
-.footer{padding:30px;font-size:.8rem;opacity:.5}
+.footer{
+  padding:30px;
+  font-size:.8rem;
+  opacity:.5;
+  position:relative;
+  z-index:1;
+}
 </style>
 </head>
 
@@ -184,82 +205,173 @@ body{
 </section>
 
 <section class="section">
-<div class="card">
-<h3>Falta</h3>
+  <div class="card">
+    <h3>Falta</h3>
+    <div class="countdown">
 
-<div class="countdown">
+      <div class="flip slow" data-unit="days">
+        <div class="flip-card">
+          <div class="flip-face front"><span>0</span><small>Días</small></div>
+          <div class="flip-face back"><span>0</span><small>Días</small></div>
+        </div>
+      </div>
 
-<div class="flip slow" data-unit="days">
-  <div class="flip-card">
-    <div class="flip-face front"><span>0</span><small>Días</small></div>
-    <div class="flip-face back"><span>0</span><small>Días</small></div>
+      <div class="flip slow" data-unit="hours">
+        <div class="flip-card">
+          <div class="flip-face front"><span>0</span><small>Horas</small></div>
+          <div class="flip-face back"><span>0</span><small>Horas</small></div>
+        </div>
+      </div>
+
+      <div class="flip medium" data-unit="minutes">
+        <div class="flip-card">
+          <div class="flip-face front"><span>0</span><small>Min</small></div>
+          <div class="flip-face back"><span>0</span><small>Min</small></div>
+        </div>
+      </div>
+
+      <div class="flip fast" data-unit="seconds">
+        <div class="flip-card">
+          <div class="flip-face front"><span>0</span><small>Seg</small></div>
+          <div class="flip-face back"><span>0</span><small>Seg</small></div>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
-
-<div class="flip slow" data-unit="hours">
-  <div class="flip-card">
-    <div class="flip-face front"><span>0</span><small>Horas</small></div>
-    <div class="flip-face back"><span>0</span><small>Horas</small></div>
-  </div>
-</div>
-
-<div class="flip medium" data-unit="minutes">
-  <div class="flip-card">
-    <div class="flip-face front"><span>0</span><small>Min</small></div>
-    <div class="flip-face back"><span>0</span><small>Min</small></div>
-  </div>
-</div>
-
-<div class="flip fast" data-unit="seconds">
-  <div class="flip-card">
-    <div class="flip-face front"><span>0</span><small>Seg</small></div>
-    <div class="flip-face back"><span>0</span><small>Seg</small></div>
-  </div>
-</div>
-
-</div>
-</div>
 </section>
 
+<section class="section">
+  <div class="card">
+    <p>Tu presencia es muy importante,<br>
+    pero si deseás hacerme un regalo,<br>
+    este es mi alias:</p>
+    <h3>esme.riva.mp</h3>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h3>Vestimenta</h3>
+    <p>Elegante · Total Black</p>
+    <img src="oufit.jfif" class="outfit-img">
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h3>Ubicación</h3>
+    <p><b>Crazy Night Party</b><br>
+    Ricardo Rojas 765<br>
+    Arrecifes, Buenos Aires</p>
+
+    <iframe class="map"
+      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
+      loading="lazy"></iframe>
+
+    <a class="btn" target="_blank"
+      href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
+      Abrir en Google Maps 📍
+    </a>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px">
+  <div class="card">
+    <h3>Confirmar asistencia</h3>
+    <a class="btn"
+      href="https://wa.me/5492478543904?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20tus%2015%20✨"
+      target="_blank">
+      Confirmar por WhatsApp 💬
+    </a>
+  </div>
+</section>
+
+<div class="footer">Esmeralda · Mis 15 ✨</div>
+
 <script>
-/* FLIP CONTADOR CORRECTO */
+/* CONTADOR FLIP DEFINITIVO */
 const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
 
-function update(){
-  const d = eventDate - Date.now();
-  if(d<0) return;
+document.querySelectorAll(".flip").forEach(f=>{
+  f.dataset.animating="false";
+});
 
-  const vals={
-    days:Math.floor(d/86400000),
-    hours:Math.floor(d/3600000)%24,
-    minutes:Math.floor(d/60000)%60,
-    seconds:Math.floor(d/1000)%60
+function updateCountdown(){
+  const d = eventDate - Date.now();
+  if(d < 0) return;
+
+  const values = {
+    days: Math.floor(d/86400000),
+    hours: Math.floor(d/3600000)%24,
+    minutes: Math.floor(d/60000)%60,
+    seconds: Math.floor(d/1000)%60
   };
 
   document.querySelectorAll(".flip").forEach(f=>{
-    const unit=f.dataset.unit;
-    const front=f.querySelector(".front span");
-    const back=f.querySelector(".back span");
+    const unit = f.dataset.unit;
+    const front = f.querySelector(".front span");
+    const back  = f.querySelector(".back span");
 
-    if(front.textContent != vals[unit]){
-      back.textContent = vals[unit];
+    if(front.textContent != values[unit] && f.dataset.animating==="false"){
+      f.dataset.animating="true";
+      back.textContent = values[unit];
       f.classList.add("animate");
 
+      const dur = parseFloat(
+        getComputedStyle(f.querySelector(".flip-card")).transitionDuration
+      ) * 1000;
+
       setTimeout(()=>{
-        front.textContent = vals[unit];
+        front.textContent = values[unit];
         f.classList.remove("animate");
-      },600);
+        f.dataset.animating="false";
+      }, dur);
     }
   });
 }
-update();
-setInterval(update,1000);
 
-/* OBS */
-const obs=new IntersectionObserver(e=>{
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+/* ANIMACIONES */
+const obs = new IntersectionObserver(e=>{
   e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
 },{threshold:.2});
 document.querySelectorAll(".section").forEach(s=>obs.observe(s));
+
+/* MÚSICA */
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+let activated=false;
+
+document.addEventListener("click",()=>{
+  if(activated) return;
+  music.volume=0;
+  music.play();
+  let v=0;
+  const fade=setInterval(()=>{
+    v+=0.04;
+    music.volume=Math.min(v,0.8);
+    if(v>=0.8) clearInterval(fade);
+  },200);
+  activated=true;
+},{once:true});
+
+btn.onclick=()=>{
+  music.muted=!music.muted;
+  btn.textContent=music.muted?"🔇":"🔊";
+};
+
+/* BRILLOS */
+for(let i=0;i<45;i++){
+  const s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=(8+Math.random()*10)+"s";
+  s.style.opacity=Math.random()*0.6+0.2;
+  document.body.appendChild(s);
+}
 </script>
 
 </body>
