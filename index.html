@@ -2,66 +2,123 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Esmeralda - Mis 15</title>
+<title>Esmeralda · Mis 15</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(120deg, #0f3d2e, #d4af37);
+  font-family: 'Poppins', Arial, sans-serif;
+  background: #0f3d2e;
   color: white;
   text-align: center;
 }
 
-.container {
-  margin-top: 10vh;
-  padding: 20px;
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(
+      rgba(0,0,0,0.4),
+      rgba(0,0,0,0.7)
+    ),
+    linear-gradient(120deg, #0f3d2e, #d4af37);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-h1 {
-  font-size: 3.5rem;
+.hero h2 {
+  font-weight: 300;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin: 10px 0;
   color: #00ffcc;
-  text-shadow: 0 0 15px #000;
+  text-shadow: 0 0 20px #000;
 }
 
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+.hero span {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.scroll {
+  margin-top: 40px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* SECTIONS */
+.section {
+  padding: 70px 20px;
+  background: #0f3d2e;
 }
 
 .card {
-  background: rgba(0,0,0,0.45);
+  max-width: 420px;
+  margin: auto;
+  background: rgba(255,255,255,0.08);
   padding: 30px;
   border-radius: 20px;
-  display: inline-block;
-  max-width: 420px;
+  backdrop-filter: blur(6px);
 }
 
+/* TEXT */
+.card h3 {
+  margin-top: 20px;
+  color: #00ffcc;
+}
+
+.card p {
+  line-height: 1.6;
+}
+
+/* BUTTON */
 .btn {
-  margin-top: 25px;
-  padding: 15px 30px;
-  background: #00ffcc;
+  display: inline-block;
+  margin-top: 30px;
+  padding: 15px 35px;
+  background: linear-gradient(120deg, #00ffcc, #d4af37);
   color: black;
   text-decoration: none;
-  border-radius: 30px;
   font-weight: bold;
-  display: inline-block;
+  border-radius: 40px;
+}
+
+/* FOOTER */
+.footer {
+  padding: 30px;
+  font-size: 0.8rem;
+  opacity: 0.6;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Música (para pruebas) -->
+<!-- Música (solo para pruebas locales / privadas) -->
 <audio autoplay loop>
-  <source src="cancion.mp3" type="audio/mpeg">
+  <source src="frutilla.mp3" type="audio/mpeg">
 </audio>
 
-<div class="container">
-  <h2>Mis 15 Años</h2>
+<!-- HERO -->
+<section class="hero">
+  <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
+  <span>25 · 04 · 21:00 hs</span>
+  <div class="scroll">Deslizá para ver más ↓</div>
+</section>
 
+<!-- INFO -->
+<section class="section">
   <div class="card">
     <p>
       Si bien tu presencia es especial e importante,<br>
@@ -70,18 +127,29 @@ h2 {
     </p>
 
     <h3>esme.riva.mp</h3>
+  </div>
+</section>
 
+<!-- EVENTO -->
+<section class="section">
+  <div class="card">
+    <p>📍 <b>Crazy Night Party</b><br>Richard Rojas 765</p>
+    <p>🕘 <b>Hora:</b> 21:00</p>
     <p>📅 <b>Fecha:</b> 25/04</p>
-    <p>🕘 <b>Hora:</b> 21:00 hs</p>
-    <p>📍 <b>Lugar:</b> Crazy Night Party<br>Richard Rojas 765</p>
     <p>👗 <b>Vestimenta:</b> Elegante · Total Black</p>
 
     <a class="btn" href="https://wa.me/5491112345678" target="_blank">
       Confirmar presencia 💬
     </a>
   </div>
+</section>
+
+<div class="footer">
+  Esmeralda · Mis 15 ✨
 </div>
 
 </body>
 </html>
+
+
 
