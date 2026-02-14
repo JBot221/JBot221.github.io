@@ -5,199 +5,169 @@
 <title>Esmeralda · Mis 15</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#0f2f26;
+  color:#f5f5f5;
+  text-align:center;
+  overflow-x:hidden;
 }
 
-body {
-  margin: 0;
-  font-family: 'Montserrat', Arial, sans-serif;
-  background: #0f2f26;
-  color: #f5f5f5;
-  text-align: center;
-  overflow-x: hidden;
+/* POLVO DORADO */
+.gold-dust{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+.gold-dust span{
+  position:absolute;
+  width:2px;height:2px;
+  background:rgba(201,178,109,.5);
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh)}
+  to{transform:translateY(110vh)}
 }
 
-/* ===== POLVO DORADO ===== */
-.background {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
+/* HERO */
+.hero{
+  height:100vh;
+  background:radial-gradient(circle at top,rgba(201,178,109,.15),transparent 60%),
+             linear-gradient(180deg,#123a2f,#0f2f26);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:1;
+  position:relative;
+}
+.hero h2{
+  letter-spacing:4px;
+  font-weight:300;
+  color:#c9b26d;
+}
+.hero h1{
+  font-family:'Cinzel',serif;
+  font-size:3.2rem;
+  color:#3dd6b5;
+  margin:10px 0;
 }
 
-.dust {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #c9b26d;
-  border-radius: 50%;
-  opacity: 0.4;
-  animation: fall linear infinite;
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .9s ease;
+  position:relative;
+  z-index:1;
+}
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(120vh);
-  }
+/* CARD */
+.card{
+  max-width:420px;
+  margin:auto;
+  background:rgba(255,255,255,.06);
+  padding:30px;
+  border-radius:22px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+.card h3{
+  font-family:'Cinzel',serif;
+  color:#c9b26d;
+  margin-bottom:15px;
 }
 
-/* ===== HERO ===== */
-.hero {
-  height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(201,178,109,0.18), transparent 60%),
-    linear-gradient(180deg, #123a2f, #0f2f26);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
+/* COUNTDOWN */
+.countdown{
+  display:flex;
+  justify-content:space-between;
+}
+.flip{
+  perspective:600px;
+  width:70px;
+}
+.flip-inner{
+  background:rgba(0,0,0,.35);
+  border-radius:12px;
+  padding:12px 0;
+  transition:transform .6s;
+}
+.flip.fast .flip-inner{transition:.3s}
+.flip.slow .flip-inner{transition:1.2s}
+.flip span{
+  font-size:1.7rem;
+  color:#3dd6b5;
+  display:block;
+}
+.flip small{font-size:.7rem;opacity:.7}
+
+/* IMAGE */
+.outfit-img{
+  width:100%;
+  border-radius:16px;
+  margin-top:18px;
 }
 
-.hero h2 {
-  letter-spacing: 4px;
-  font-weight: 300;
-  color: #c9b26d;
+/* MAP */
+.map{
+  width:100%;
+  height:260px;
+  border-radius:16px;
+  border:none;
+  margin-top:18px;
 }
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.8rem, 8vw, 4rem);
-  margin: 10px 0;
-  color: #3dd6b5;
+/* BUTTON */
+.btn{
+  display:inline-block;
+  margin-top:28px;
+  padding:14px 32px;
+  background:linear-gradient(135deg,#3dd6b5,#c9b26d);
+  color:#0f2f26;
+  text-decoration:none;
+  font-weight:600;
+  border-radius:40px;
 }
 
-.hero p {
-  opacity: 0.85;
+/* MUSIC BUTTON */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:rgba(255,255,255,.08);
+  border:none;
+  border-radius:50%;
+  width:44px;
+  height:44px;
+  color:#c9b26d;
+  font-size:18px;
+  z-index:10;
 }
 
-/* ===== SECCIONES ===== */
-.section {
-  padding: 70px 18px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.9s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== CARD ===== */
-.card {
-  max-width: 420px;
-  margin: auto;
-  background: rgba(255,255,255,0.07);
-  padding: 28px;
-  border-radius: 22px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
-}
-
-.card h3 {
-  font-family: 'Playfair Display', serif;
-  color: #c9b26d;
-  margin-bottom: 15px;
-}
-
-/* ===== CONTADOR FLIP ===== */
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.flip {
-  width: 72px;
-  height: 80px;
-  perspective: 600px;
-}
-
-.flip-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.flip-inner span {
-  font-size: 1.8rem;
-  color: #3dd6b5;
-  display: block;
-}
-
-.flip-inner small {
-  font-size: 0.7rem;
-  opacity: 0.7;
-}
-
-.flip.animate {
-  animation: flip 0.6s ease;
-}
-
-@keyframes flip {
-  0% { transform: rotateX(0); }
-  100% { transform: rotateX(360deg); }
-}
-
-/* ===== IMAGEN ===== */
-.outfit-img {
-  width: 100%;
-  border-radius: 16px;
-  margin-top: 18px;
-}
-
-/* ===== MAPA ===== */
-.map {
-  width: 100%;
-  height: 260px;
-  border-radius: 16px;
-  border: none;
-  margin-top: 18px;
-}
-
-/* ===== BOTONES ===== */
-.btn {
-  display: inline-block;
-  margin-top: 22px;
-  padding: 16px 36px;
-  background: linear-gradient(135deg, #3dd6b5, #c9b26d);
-  color: #0f2f26;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 40px;
-}
-
-.btn-wsp {
-  background: linear-gradient(135deg, #25d366, #c9b26d);
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  padding: 30px;
-  font-size: 0.8rem;
-  opacity: 0.5;
-  position: relative;
-  z-index: 1;
-}
+.footer{padding:30px;font-size:.8rem;opacity:.5}
 </style>
 </head>
 
 <body>
 
-<div class="background" id="dust-bg"></div>
+<div class="gold-dust" id="gold"></div>
+
+<button class="music-btn" id="musicBtn">🔊</button>
+
+<audio id="bgMusic" src="cancion.mp3" loop muted></audio>
 
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
@@ -209,18 +179,11 @@ body {
   <div class="card">
     <h3>Falta</h3>
     <div class="countdown">
-      <div class="flip"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
-      <div class="flip"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
+      <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
+      <div class="flip slow"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
       <div class="flip"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
-      <div class="flip"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
+      <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
     </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="card">
-    <p>Si bien tu presencia es especial e importante,<br>pero si estás pensando en regalarme algo<br>te dejo mi alias:</p>
-    <h3>esme.riva.mp</h3>
   </div>
 </section>
 
@@ -235,16 +198,13 @@ body {
 <section class="section">
   <div class="card">
     <h3>Ubicación</h3>
-    <p><b>Crazy Night Party</b><br>Ricardo Rojas 765</p>
-
-    <iframe class="map"
-      src="https://www.google.com/maps?q=-34.057703,-60.1033036&z=17&output=embed">
+    <p>Ricardo Rojas 765<br>Arrecifes, Buenos Aires</p>
+    <iframe class="map" loading="lazy"
+      src="https://www.google.com/maps?q=Ricardo+Rojas+765+Arrecifes+Buenos+Aires&output=embed">
     </iframe>
-
-    <a class="btn btn-wsp"
-      href="https://wa.me/5492478543904?text=Hola!%20Confirmo%20mi%20presencia%20para%20los%2015%20de%20Esmeralda%20✨"
-      target="_blank">
-      Confirmar presencia 💬
+    <a class="btn" target="_blank"
+      href="https://www.google.com/maps?q=Ricardo+Rojas+765+Arrecifes+Buenos+Aires">
+      Abrir en Google Maps
     </a>
   </div>
 </section>
@@ -252,52 +212,58 @@ body {
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-/* CONTADOR FLIP */
-const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
-const units = ["days","hours","minutes","seconds"];
-let prev = {};
+/* POLVO */
+const gold=document.getElementById("gold");
+for(let i=0;i<80;i++){
+  const s=document.createElement("span");
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDuration=10+Math.random()*20+"s";
+  s.style.opacity=Math.random();
+  gold.appendChild(s);
+}
 
-setInterval(() => {
-  const now = Date.now();
-  let diff = eventDate - now;
-  if (diff < 0) diff = 0;
+/* CONTADOR */
+const eventDate=new Date("2026-04-25T21:00:00-03:00").getTime();
+setInterval(()=>{
+  const now=Date.now();
+  const d=eventDate-now;
+  if(d<0)return;
+  days.textContent=Math.floor(d/86400000);
+  hours.textContent=Math.floor(d/3600000)%24;
+  minutes.textContent=Math.floor(d/60000)%60;
+  seconds.textContent=Math.floor(d/1000)%60;
+},1000);
 
-  const values = {
-    days: Math.floor(diff / 86400000),
-    hours: Math.floor(diff / 3600000) % 24,
-    minutes: Math.floor(diff / 60000) % 60,
-    seconds: Math.floor(diff / 1000) % 60
-  };
+/* ANIMACIONES */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
+},{threshold:.2});
+document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 
-  units.forEach(u => {
-    if (prev[u] !== values[u]) {
-      const el = document.getElementById(u);
-      const flip = el.closest(".flip");
-      flip.classList.remove("animate");
-      void flip.offsetWidth;
-      flip.classList.add("animate");
-      el.textContent = values[u];
-      prev[u] = values[u];
-    }
-  });
-}, 1000);
+/* MÚSICA */
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
 
-/* SECCIONES */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => e.target.classList.toggle("visible", e.isIntersecting));
-},{threshold:0.2});
-document.querySelectorAll(".section").forEach(s=>observer.observe(s));
+music.volume=0;
+music.play();
 
-/* POLVO DORADO CONTINUO */
-const bg = document.getElementById("dust-bg");
-setInterval(() => {
-  const d = document.createElement("div");
-  d.className = "dust";
-  d.style.left = Math.random() * 100 + "vw";
-  d.style.animationDuration = (8 + Math.random() * 8) + "s";
-  bg.appendChild(d);
-  setTimeout(()=>d.remove(),16000);
-}, 400);
+let active=false;
+document.addEventListener("click",()=>{
+  if(active)return;
+  music.muted=false;
+  let v=0;
+  const fade=setInterval(()=>{
+    v+=0.05;
+    music.volume=Math.min(v,.8);
+    if(v>=.8)clearInterval(fade);
+  },200);
+  active=true;
+});
+
+btn.onclick=()=>{
+  music.muted=!music.muted;
+  btn.textContent=music.muted?"🔇":"🔊";
+};
 </script>
 
 </body>
