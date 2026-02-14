@@ -71,13 +71,11 @@ body{
   opacity:0;
   transform:scale(.85) translateY(20px);
 }
-
 @keyframes goldShine{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
-
 @keyframes titleEnter{
   to{
     opacity:1;
@@ -114,20 +112,34 @@ body{
   color:#c9b26d;
 }
 
-<!-- COUNTDOWN -->
-<section class="section">
-  <div class="card">
-    <h3>Falta</h3>
-    <div class="countdown">
-      <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
-      <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
-      <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
-      <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
-    </div>
-  </div>
-</section>
+/* COUNTDOWN */
+.countdown{
+  display:flex;
+  justify-content:space-between;
+}
+.flip{
+  perspective:600px;
+  width:70px;
+}
+.flip-inner{
+  background:rgba(0,0,0,.35);
+  border-radius:12px;
+  padding:12px 0;
+  transition:transform .6s;
+}
+.flip.fast .flip-inner{transition:.3s}
+.flip.medium .flip-inner{transition:.6s}
+.flip.slow .flip-inner{transition:1.2s}
+.flip span{
+  font-size:1.7rem;
+  color:#3dd6b5;
+  display:block;
+}
+.flip small{
+  font-size:.7rem;
+  opacity:.7;
+}
 
-<style>
 /* FLIP ANIMADO */
 .flip.animate .flip-inner{
   animation:flip 0.6s ease;
@@ -136,39 +148,6 @@ body{
   from{transform:rotateX(0)}
   to{transform:rotateX(360deg)}
 }
-</style>
-
-<script>
-/* CONTADOR CON FLIP ANIMADO */
-const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
-const units = ["days","hours","minutes","seconds"];
-let prev = {};
-
-setInterval(() => {
-  let diff = eventDate - Date.now();
-  if(diff < 0) diff = 0;
-
-  const values = {
-    days: Math.floor(diff / 86400000),
-    hours: Math.floor(diff / 3600000) % 24,
-    minutes: Math.floor(diff / 60000) % 60,
-    seconds: Math.floor(diff / 1000) % 60
-  };
-
-  units.forEach(u => {
-    const el = document.getElementById(u);
-    const flip = el.closest(".flip");
-    if(prev[u] !== values[u]){
-      flip.classList.remove("animate");
-      void flip.offsetWidth; // reinicia animación
-      flip.classList.add("animate");
-      el.textContent = values[u];
-      prev[u] = values[u];
-    }
-  });
-}, 1000);
-</script>
-
 
 /* IMAGE */
 .outfit-img{
@@ -235,7 +214,7 @@ setInterval(() => {
   <p>25 · 04 · 21:00 hs</p>
 </section>
 
-<!-- CONTADOR -->
+<!-- COUNTDOWN -->
 <section class="section">
   <div class="card">
     <h3>Falta</h3>
@@ -298,18 +277,36 @@ setInterval(() => {
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-/* CONTADOR */
-const eventDate=new Date("2026-04-25T21:00:00-03:00").getTime();
-setInterval(()=>{
-  const d=eventDate-Date.now();
-  if(d<0)return;
-  days.textContent=Math.floor(d/86400000);
-  hours.textContent=Math.floor(d/3600000)%24;
-  minutes.textContent=Math.floor(d/60000)%60;
-  seconds.textContent=Math.floor(d/1000)%60;
-},1000);
+/* CONTADOR CON FLIP ANIMADO */
+const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
+const units = ["days","hours","minutes","seconds"];
+let prev = {};
 
-/* ANIMACIONES */
+setInterval(() => {
+  let diff = eventDate - Date.now();
+  if(diff < 0) diff = 0;
+
+  const values = {
+    days: Math.floor(diff / 86400000),
+    hours: Math.floor(diff / 3600000) % 24,
+    minutes: Math.floor(diff / 60000) % 60,
+    seconds: Math.floor(diff / 1000) % 60
+  };
+
+  units.forEach(u => {
+    const el = document.getElementById(u);
+    const flip = el.closest(".flip");
+    if(prev[u] !== values[u]){
+      flip.classList.remove("animate");
+      void flip.offsetWidth;
+      flip.classList.add("animate");
+      el.textContent = values[u];
+      prev[u] = values[u];
+    }
+  });
+}, 1000);
+
+/* ANIMACIONES SECTIONS */
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
 },{threshold:.2});
@@ -319,7 +316,6 @@ document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 const music=document.getElementById("bgMusic");
 const btn=document.getElementById("musicBtn");
 let activated=false;
-
 function activateMusic(){
   if(activated)return;
   music.volume=0;
@@ -340,7 +336,7 @@ btn.onclick=()=>{
   btn.textContent=music.muted?"🔇":"🔊";
 };
 
-/* GENERAR BRILLOS (YA ACTIVOS) */
+/* GENERAR BRILLOS */
 for(let i=0;i<45;i++){
   const s=document.createElement("div");
   s.className="sparkle";
@@ -353,5 +349,3 @@ for(let i=0;i<45;i++){
 
 </body>
 </html>
-
-
