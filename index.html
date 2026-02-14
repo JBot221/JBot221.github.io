@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ✨ POLVO */
+/* ✨ POLVO DORADO */
 .sparkle{
   position:fixed;
   top:-10vh;
@@ -26,7 +26,7 @@ body{
   height:4px;
   background:radial-gradient(circle,#ffe8a3,#c9b26d);
   border-radius:50%;
-  opacity:.5;
+  opacity:.6;
   animation:fall linear infinite;
   pointer-events:none;
   z-index:0;
@@ -36,31 +36,61 @@ body{
 /* HERO */
 .hero{
   height:100vh;
-  background:linear-gradient(180deg,#123a2f,#0f2f26);
+  background:
+    radial-gradient(circle at top,rgba(201,178,109,.15),transparent 60%),
+    linear-gradient(180deg,#123a2f,#0f2f26);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  position:relative;
+  z-index:1;
 }
 
+/* TITULOS */
 .hero h2{
   letter-spacing:4px;
   font-weight:300;
   color:#c9b26d;
 }
 
+/* NOMBRE */
 .hero h1{
   font-family:'Cinzel',serif;
   font-size:3.2rem;
   margin:10px 0;
-  color:#c9b26d;
+  background:linear-gradient(120deg,#2fd1b0,#c9b26d,#2fd1b0);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:goldShine 6s ease-in-out infinite, titleEnter 1.4s ease-out forwards;
+  opacity:0;
+  transform:scale(.85) translateY(20px);
+}
+@keyframes goldShine{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes titleEnter{
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:.9s ease;
+  position:relative;
+  z-index:1;
+}
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* CARD */
-.section{
-  padding:80px 20px;
-}
-
 .card{
   max-width:420px;
   margin:auto;
@@ -68,87 +98,104 @@ body{
   padding:30px;
   border-radius:22px;
   backdrop-filter:blur(8px);
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
 }
-
 .card h3{
   font-family:'Cinzel',serif;
   color:#c9b26d;
 }
 
-/* ===== FLIP CLOCK REAL ===== */
+/* COUNTDOWN */
 .countdown{
   display:flex;
   justify-content:space-between;
 }
-
 .flip{
-  width:72px;
-  perspective:1000px;
-  --speed:.6s;
+  perspective:800px;
+  width:70px;
 }
-
-.flip-card{
-  position:relative;
-  height:80px;
-}
-
-.top,.bottom{
-  position:absolute;
-  left:0;
-  width:100%;
-  height:50%;
-  overflow:hidden;
+.flip-inner{
   background:rgba(0,0,0,.35);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  backface-visibility:hidden;
+  border-radius:12px;
+  padding:12px 0;
+  transform-style:preserve-3d;
 }
-
-.top{
-  top:0;
-  border-radius:12px 12px 0 0;
-}
-
-.bottom{
-  bottom:0;
-  border-radius:0 0 12px 12px;
-}
-
-.top span,.bottom span{
-  font-size:1.8rem;
+.flip span{
+  font-size:1.7rem;
   color:#3dd6b5;
+  display:block;
 }
-
-/* ANIMACIÓN */
-.flip.animate .top{
-  transform-origin:bottom;
-  animation:flipTop var(--speed) ease-in forwards;
-}
-
-.flip.animate .bottom{
-  transform-origin:top;
-  animation:flipBottom var(--speed) ease-out forwards;
-}
-
-@keyframes flipTop{
-  to{transform:rotateX(-90deg)}
-}
-
-@keyframes flipBottom{
-  from{transform:rotateX(90deg)}
-  to{transform:rotateX(0)}
-}
-
-.label{
-  margin-top:6px;
+.flip small{
   font-size:.7rem;
   opacity:.7;
+}
+
+/* VELOCIDADES */
+.flip.fast .flip-inner{transition:transform .25s}
+.flip.medium .flip-inner{transition:transform .5s}
+.flip.slow .flip-inner{transition:transform .9s}
+
+.flip.flip-animate .flip-inner{
+  transform:rotateX(-180deg);
+}
+
+/* IMAGE */
+.outfit-img{
+  width:100%;
+  border-radius:16px;
+  margin-top:18px;
+}
+
+/* MAP */
+.map{
+  width:100%;
+  height:260px;
+  border-radius:16px;
+  border:none;
+  margin-top:18px;
+}
+
+/* BUTTONS */
+.btn{
+  display:inline-block;
+  margin-top:22px;
+  padding:14px 32px;
+  background:linear-gradient(135deg,#3dd6b5,#c9b26d);
+  color:#0f2f26;
+  text-decoration:none;
+  font-weight:600;
+  border-radius:40px;
+}
+
+/* MUSIC BUTTON */
+.music-btn{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:rgba(255,255,255,.08);
+  border:none;
+  border-radius:50%;
+  width:44px;
+  height:44px;
+  color:#c9b26d;
+  font-size:18px;
+  z-index:10;
+}
+
+.footer{
+  padding:30px;
+  font-size:.8rem;
+  opacity:.5;
+  position:relative;
+  z-index:1;
 }
 </style>
 </head>
 
 <body>
+
+<button class="music-btn" id="musicBtn">🔊</button>
+<audio id="bgMusic" src="cancion.mp3" loop></audio>
 
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
@@ -158,68 +205,120 @@ body{
 
 <section class="section">
   <div class="card">
-    <h3>FALTA</h3>
+    <h3>Falta</h3>
     <div class="countdown">
-      <div class="flip" id="days" style="--speed:1.1s"></div>
-      <div class="flip" id="hours" style="--speed:.8s"></div>
-      <div class="flip" id="minutes" style="--speed:.5s"></div>
-      <div class="flip" id="seconds" style="--speed:.25s"></div>
+      <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
+      <div class="flip slow"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
+      <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
+      <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
     </div>
   </div>
 </section>
 
+<section class="section">
+  <div class="card">
+    <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
+    <h3>esme.riva.mp</h3>
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h3>Vestimenta</h3>
+    <p>Elegante · Total Black</p>
+    <img src="oufit.jfif" class="outfit-img">
+  </div>
+</section>
+
+<section class="section">
+  <div class="card">
+    <h3>Ubicación</h3>
+    <p><b>Crazy Night Party</b><br>Ricardo Rojas 765<br>Arrecifes, Buenos Aires</p>
+    <iframe class="map"
+      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
+      loading="lazy"></iframe>
+    <a class="btn" target="_blank"
+      href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
+      Abrir en Google Maps 📍
+    </a>
+  </div>
+</section>
+
+<!-- 👇 un poco más cerca -->
+<section class="section" style="padding-top:40px">
+  <div class="card">
+    <h3>Confirmar asistencia</h3>
+    <a class="btn"
+      href="https://wa.me/5492478543904?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20tus%2015%20✨"
+      target="_blank">
+      Confirmar por WhatsApp 💬
+    </a>
+  </div>
+</section>
+
+<div class="footer">Esmeralda · Mis 15 ✨</div>
+
 <script>
-/* ===== CREAR FLIP ===== */
-function createFlip(el,label){
-  el.innerHTML = `
-    <div class="flip-card">
-      <div class="top"><span>0</span></div>
-      <div class="bottom"><span>0</span></div>
-    </div>
-    <div class="label">${label}</div>`;
-}
-
-createFlip(days,"Días");
-createFlip(hours,"Horas");
-createFlip(minutes,"Min");
-createFlip(seconds,"Seg");
-
-/* ===== UPDATE LIMPIO (SIN DUPLICADOS) ===== */
-function updateFlip(el,value){
-  const top = el.querySelector(".top span");
-  const bottom = el.querySelector(".bottom span");
-  const speed = parseFloat(getComputedStyle(el).getPropertyValue("--speed")) * 1000;
-
-  if(top.textContent == value) return;
-
-  bottom.textContent = value;
-  el.classList.add("animate");
-
-  setTimeout(()=>{
-    top.textContent = value;
-    el.classList.remove("animate");
-  }, speed);
-}
-
-/* ===== CONTADOR ===== */
-const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
+/* CONTADOR + FLIP */
+const eventDate=new Date("2026-04-25T21:00:00-03:00").getTime();
+const ids=["days","hours","minutes","seconds"];
 
 setInterval(()=>{
-  const diff = eventDate - Date.now();
-  if(diff < 0) return;
-
-  updateFlip(days, Math.floor(diff / 86400000));
-  updateFlip(hours, Math.floor(diff / 3600000) % 24);
-  updateFlip(minutes, Math.floor(diff / 60000) % 60);
-  updateFlip(seconds, Math.floor(diff / 1000) % 60);
+  const d=eventDate-Date.now();
+  if(d<0)return;
+  const values=[
+    Math.floor(d/86400000),
+    Math.floor(d/3600000)%24,
+    Math.floor(d/60000)%60,
+    Math.floor(d/1000)%60
+  ];
+  ids.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el.textContent!=values[i]){
+      el.parentElement.parentElement.classList.add("flip-animate");
+      setTimeout(()=>el.textContent=values[i],200);
+      setTimeout(()=>el.parentElement.parentElement.classList.remove("flip-animate"),600);
+    }
+  });
 },1000);
 
+/* ANIMACIONES */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
+},{threshold:.2});
+document.querySelectorAll(".section").forEach(s=>obs.observe(s));
+
+/* MÚSICA – SOLO CLICK */
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+let activated=false;
+
+function activateMusic(){
+  if(activated)return;
+  music.volume=0;
+  music.play();
+  let v=0;
+  const fade=setInterval(()=>{
+    v+=0.04;
+    music.volume=Math.min(v,0.8);
+    if(v>=0.8)clearInterval(fade);
+  },200);
+  activated=true;
+}
+document.addEventListener("click",activateMusic,{once:true});
+
+btn.onclick=()=>{
+  music.muted=!music.muted;
+  btn.textContent=music.muted?"🔇":"🔊";
+};
+
 /* BRILLOS */
-for(let i=0;i<35;i++){
+for(let i=0;i<45;i++){
   const s=document.createElement("div");
   s.className="sparkle";
   s.style.left=Math.random()*100+"vw";
   s.style.animationDuration=(8+Math.random()*10)+"s";
+  s.style.opacity=Math.random()*0.6+0.2;
   document.body.appendChild(s);
 }
 </script>
