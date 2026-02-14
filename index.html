@@ -114,18 +114,34 @@ body{
   color:#c9b26d;
 }
 
-<!-- CONTADOR -->
-<section class="section">
-  <div class="card">
-    <h3>Falta</h3>
-    <div class="countdown">
-      <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
-      <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
-      <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
-      <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
-    </div>
-  </div>
-</section>
+
+/* COUNTDOWN */
+.countdown{
+  display:flex;
+  justify-content:space-between;
+}
+.flip{
+  perspective:600px;
+  width:70px;
+}
+.flip-inner{
+  background:rgba(0,0,0,.35);
+  border-radius:12px;
+  padding:12px 0;
+  transition:transform .6s;
+}
+.flip.fast .flip-inner{transition:.3s}
+.flip.medium .flip-inner{transition:.6s}
+.flip.slow .flip-inner{transition:1.2s}
+.flip span{
+  font-size:1.7rem;
+  color:#3dd6b5;
+  display:block;
+}
+.flip small{
+  font-size:.7rem;
+  opacity:.7;
+}
 /* IMAGE */
 .outfit-img{
   width:100%;
@@ -309,5 +325,6 @@ for(let i=0;i<45;i++){
 
 </body>
 </html>
+
 
 
