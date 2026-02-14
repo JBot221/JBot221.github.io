@@ -5,243 +5,230 @@
 <title>Esmeralda · Mis 15</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: 'Montserrat', Arial, sans-serif;
-  background: #0f2f26;
-  color: #f5f5f5;
-  text-align: center;
-  overflow-x: hidden;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#0f2f26;
+  color:#f5f5f5;
+  text-align:center;
+  overflow-x:hidden;
 }
 
-/* ===== POLVO DORADO ===== */
-.background {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
+/* ✨ POLVO DORADO DE FONDO */
+.sparkle{
+  position:fixed;
+  top:-10vh;
+  width:4px;
+  height:4px;
+  background:radial-gradient(circle,#ffe8a3,#c9b26d);
+  border-radius:50%;
+  opacity:.6;
+  animation:fall linear infinite;
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes fall{
+  to{transform:translateY(120vh)}
 }
 
-.dust {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #c9b26d;
-  border-radius: 50%;
-  opacity: 0.35;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  to { transform: translateY(120vh); }
-}
-
-/* ===== BOTÓN MÚSICA ===== */
-.music-toggle {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 5;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.08);
-  color: #c9b26d;
-  font-size: 18px;
-  cursor: pointer;
-  backdrop-filter: blur(6px);
-}
-
-/* ===== HERO ===== */
-.hero {
-  height: 100vh;
+/* HERO */
+.hero{
+  height:100vh;
   background:
-    radial-gradient(circle at top, rgba(201,178,109,0.18), transparent 60%),
-    linear-gradient(180deg, #123a2f, #0f2f26);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
+    radial-gradient(circle at top,rgba(201,178,109,.15),transparent 60%),
+    linear-gradient(180deg,#123a2f,#0f2f26);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  z-index:1;
 }
 
-.hero h2 {
-  letter-spacing: 4px;
-  font-weight: 300;
-  color: #c9b26d;
+/* TITULOS */
+.hero h2{
+  letter-spacing:4px;
+  font-weight:300;
+  color:#c9b26d;
 }
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.8rem, 8vw, 4rem);
-  margin: 10px 0;
-  color: #3dd6b5;
+/* ✨ NOMBRE – BRILLO + ENTRADA */
+.hero h1{
+  font-family:'Cinzel',serif;
+  font-size:3.2rem;
+  margin:10px 0;
+  background:linear-gradient(120deg,#2fd1b0,#c9b26d,#2fd1b0);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:
+    goldShine 6s ease-in-out infinite,
+    titleEnter 1.4s ease-out forwards;
+  opacity:0;
+  transform:scale(.85) translateY(20px);
 }
 
-.hero p { opacity: 0.85; }
-
-/* ===== SECCIONES ===== */
-.section {
-  padding: 70px 18px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.9s ease;
-  position: relative;
-  z-index: 1;
+@keyframes goldShine{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes titleEnter{
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
 }
 
-/* ===== CARD ===== */
-.card {
-  max-width: 420px;
-  margin: auto;
-  background: rgba(255,255,255,0.07);
-  padding: 28px;
-  border-radius: 22px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .9s ease;
+  position:relative;
+  z-index:1;
+}
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.card h3 {
-  font-family: 'Playfair Display', serif;
-  color: #c9b26d;
-  margin-bottom: 15px;
+/* CARD */
+.card{
+  max-width:420px;
+  margin:auto;
+  background:rgba(255,255,255,.06);
+  padding:30px;
+  border-radius:22px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+.card h3{
+  font-family:'Cinzel',serif;
+  color:#c9b26d;
 }
 
-/* ===== CONTADOR FLIP ===== */
-.countdown {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+/* COUNTDOWN */
+.countdown{
+  display:flex;
+  justify-content:space-between;
+}
+.flip{
+  perspective:600px;
+  width:70px;
+}
+.flip-inner{
+  background:rgba(0,0,0,.35);
+  border-radius:12px;
+  padding:12px 0;
+  transition:transform .6s;
+}
+.flip.fast .flip-inner{transition:.3s}
+.flip.medium .flip-inner{transition:.6s}
+.flip.slow .flip-inner{transition:1.2s}
+.flip span{
+  font-size:1.7rem;
+  color:#3dd6b5;
+  display:block;
+}
+.flip small{
+  font-size:.7rem;
+  opacity:.7;
 }
 
-.flip {
-  width: 72px;
-  height: 80px;
-  perspective: 600px;
+/* IMAGE */
+.outfit-img{
+  width:100%;
+  border-radius:16px;
+  margin-top:18px;
 }
 
-.flip-inner {
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* MAP */
+.map{
+  width:100%;
+  height:260px;
+  border-radius:16px;
+  border:none;
+  margin-top:18px;
 }
 
-.flip-inner span {
-  font-size: 1.8rem;
-  color: #3dd6b5;
+/* BUTTONS */
+.btn{
+  display:inline-block;
+  margin-top:22px;
+  padding:14px 32px;
+  background:linear-gradient(135deg,#3dd6b5,#c9b26d);
+  color:#0f2f26;
+  text-decoration:none;
+  font-weight:600;
+  border-radius:40px;
 }
 
-.flip-inner small {
-  font-size: 0.7rem;
-  opacity: 0.7;
+/* MUSIC BUTTON */
+.music-btn{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:rgba(255,255,255,.08);
+  border:none;
+  border-radius:50%;
+  width:44px;
+  height:44px;
+  color:#c9b26d;
+  font-size:18px;
+  z-index:10;
 }
 
-.flip.animate {
-  animation: flip 0.6s ease;
-}
-
-@keyframes flip {
-  from { transform: rotateX(0); }
-  to { transform: rotateX(360deg); }
-}
-
-/* ===== IMAGEN ===== */
-.outfit-img {
-  width: 100%;
-  border-radius: 16px;
-  margin-top: 18px;
-}
-
-/* ===== MAPA ===== */
-.map {
-  width: 100%;
-  height: 260px;
-  border-radius: 16px;
-  border: none;
-  margin-top: 18px;
-}
-
-/* ===== BOTONES ===== */
-.btn {
-  display: inline-block;
-  margin-top: 22px;
-  padding: 16px 36px;
-  background: linear-gradient(135deg, #3dd6b5, #c9b26d);
-  color: #0f2f26;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 40px;
-}
-
-.btn-wsp {
-  background: linear-gradient(135deg, #25d366, #c9b26d);
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  padding: 30px;
-  font-size: 0.8rem;
-  opacity: 0.5;
-  position: relative;
-  z-index: 1;
+.footer{
+  padding:30px;
+  font-size:.8rem;
+  opacity:.5;
+  position:relative;
+  z-index:1;
 }
 </style>
 </head>
 
 <body>
 
-<!-- AUDIO -->
-<audio id="music" loop>
-  <source src="cancion.mp3" type="audio/mpeg">
-</audio>
+<button class="music-btn" id="musicBtn">🔊</button>
+<audio id="bgMusic" src="cancion.mp3" loop></audio>
 
-<button class="music-toggle" onclick="toggleMusic()" id="musicBtn">🕨</button>
-
-<div class="background" id="dust-bg"></div>
-
+<!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
 </section>
 
+<!-- CONTADOR -->
 <section class="section">
   <div class="card">
     <h3>Falta</h3>
     <div class="countdown">
-      <div class="flip"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
-      <div class="flip"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
-      <div class="flip"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
-      <div class="flip"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
+      <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
+      <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
+      <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
+      <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
     </div>
   </div>
 </section>
 
+<!-- REGALO -->
 <section class="section">
   <div class="card">
-    <p>Si bien tu presencia es especial e importante,<br>
-    pero si estás pensando en regalarme algo<br>
-    te dejo mi alias:</p>
+    <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
     <h3>esme.riva.mp</h3>
   </div>
 </section>
 
+<!-- VESTIMENTA -->
 <section class="section">
   <div class="card">
     <h3>Vestimenta</h3>
@@ -250,21 +237,32 @@ body {
   </div>
 </section>
 
+<!-- UBICACIÓN -->
 <section class="section">
   <div class="card">
     <h3>Ubicación</h3>
-    <p><b>Crazy Night Party</b><br>
-    Ricardo Rojas 765<br>
-    Arrecifes, Provincia de Buenos Aires</p>
+    <p><b>Crazy Night Party</b><br>Ricardo Rojas 765<br>Arrecifes, Buenos Aires</p>
 
     <iframe class="map"
-      src="https://www.google.com/maps?q=Ricardo+Rojas+765,+Arrecifes,+Buenos+Aires&output=embed">
+      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
+      loading="lazy">
     </iframe>
 
-    <a class="btn btn-wsp"
-      href="https://wa.me/5492478543904?text=Hola!%20Confirmo%20mi%20presencia%20para%20los%2015%20de%20Esmeralda%20✨"
+    <a class="btn" target="_blank"
+      href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
+      Abrir en Google Maps 📍
+    </a>
+  </div>
+</section>
+
+<!-- CONFIRMAR -->
+<section class="section">
+  <div class="card">
+    <h3>Confirmar asistencia</h3>
+    <a class="btn"
+      href="https://wa.me/5492478543904?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20tus%2015%20✨"
       target="_blank">
-      Confirmar presencia 💬
+      Confirmar por WhatsApp 💬
     </a>
   </div>
 </section>
@@ -272,86 +270,59 @@ body {
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-/* ===== MÚSICA AUTOPLAY + FADE IN ===== */
-const music = document.getElementById("music");
-const btn = document.getElementById("musicBtn");
-let isPlaying = false;
+/* CONTADOR */
+const eventDate=new Date("2026-04-25T21:00:00-03:00").getTime();
+setInterval(()=>{
+  const d=eventDate-Date.now();
+  if(d<0)return;
+  days.textContent=Math.floor(d/86400000);
+  hours.textContent=Math.floor(d/3600000)%24;
+  minutes.textContent=Math.floor(d/60000)%60;
+  seconds.textContent=Math.floor(d/1000)%60;
+},1000);
 
-music.volume = 0;
+/* ANIMACIONES */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
+},{threshold:.2});
+document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 
-window.addEventListener("load", () => {
-  music.play().then(() => {
-    isPlaying = true;
-    btn.textContent = "🕪";
-    let v = 0;
-    const fade = setInterval(() => {
-      if (v < 0.6) {
-        v += 0.02;
-        music.volume = v;
-      } else {
-        clearInterval(fade);
-      }
-    }, 200);
-  }).catch(()=>{});
-});
+/* MÚSICA */
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+let activated=false;
 
-function toggleMusic() {
-  if (isPlaying) {
-    music.pause();
-    btn.textContent = "🕨";
-  } else {
-    music.play();
-    btn.textContent = "🕪";
-  }
-  isPlaying = !isPlaying;
+function activateMusic(){
+  if(activated)return;
+  music.volume=0;
+  music.play();
+  let v=0;
+  const fade=setInterval(()=>{
+    v+=0.04;
+    music.volume=Math.min(v,0.8);
+    if(v>=0.8)clearInterval(fade);
+  },200);
+  activated=true;
 }
+document.addEventListener("click",activateMusic,{once:true});
+document.addEventListener("scroll",activateMusic,{once:true});
 
-/* ===== CONTADOR ===== */
-const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
-const units = ["days","hours","minutes","seconds"];
-let prev = {};
+btn.onclick=()=>{
+  music.muted=!music.muted;
+  btn.textContent=music.muted?"🔇":"🔊";
+};
 
-setInterval(() => {
-  let diff = eventDate - Date.now();
-  if (diff < 0) diff = 0;
-
-  const values = {
-    days: Math.floor(diff / 86400000),
-    hours: Math.floor(diff / 3600000) % 24,
-    minutes: Math.floor(diff / 60000) % 60,
-    seconds: Math.floor(diff / 1000) % 60
-  };
-
-  units.forEach(u => {
-    if (prev[u] !== values[u]) {
-      const el = document.getElementById(u);
-      const flip = el.closest(".flip");
-      flip.classList.remove("animate");
-      void flip.offsetWidth;
-      flip.classList.add("animate");
-      el.textContent = values[u];
-      prev[u] = values[u];
-    }
-  });
-}, 1000);
-
-/* ===== SECCIONES ===== */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => e.target.classList.toggle("visible", e.isIntersecting));
-},{threshold:0.2});
-document.querySelectorAll(".section").forEach(s=>observer.observe(s));
-
-/* ===== POLVO DORADO ===== */
-const bg = document.getElementById("dust-bg");
-setInterval(() => {
-  const d = document.createElement("div");
-  d.className = "dust";
-  d.style.left = Math.random() * 100 + "vw";
-  d.style.animationDuration = (10 + Math.random() * 10) + "s";
-  bg.appendChild(d);
-  setTimeout(()=>d.remove(),20000);
-}, 500);
+/* GENERAR BRILLOS (YA ACTIVOS) */
+for(let i=0;i<45;i++){
+  const s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=(8+Math.random()*10)+"s";
+  s.style.opacity=Math.random()*0.6+0.2;
+  document.body.appendChild(s);
+}
 </script>
 
 </body>
 </html>
+
