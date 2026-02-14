@@ -114,33 +114,61 @@ body{
   color:#c9b26d;
 }
 
-/* COUNTDOWN */
-.countdown{
-  display:flex;
-  justify-content:space-between;
+<!-- COUNTDOWN -->
+<section class="section">
+  <div class="card">
+    <h3>Falta</h3>
+    <div class="countdown">
+      <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
+      <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
+      <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
+      <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* FLIP ANIMADO */
+.flip.animate .flip-inner{
+  animation:flip 0.6s ease;
 }
-.flip{
-  perspective:600px;
-  width:70px;
+@keyframes flip{
+  from{transform:rotateX(0)}
+  to{transform:rotateX(360deg)}
 }
-.flip-inner{
-  background:rgba(0,0,0,.35);
-  border-radius:12px;
-  padding:12px 0;
-  transition:transform .6s;
-}
-.flip.fast .flip-inner{transition:.3s}
-.flip.medium .flip-inner{transition:.6s}
-.flip.slow .flip-inner{transition:1.2s}
-.flip span{
-  font-size:1.7rem;
-  color:#3dd6b5;
-  display:block;
-}
-.flip small{
-  font-size:.7rem;
-  opacity:.7;
-}
+</style>
+
+<script>
+/* CONTADOR CON FLIP ANIMADO */
+const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
+const units = ["days","hours","minutes","seconds"];
+let prev = {};
+
+setInterval(() => {
+  let diff = eventDate - Date.now();
+  if(diff < 0) diff = 0;
+
+  const values = {
+    days: Math.floor(diff / 86400000),
+    hours: Math.floor(diff / 3600000) % 24,
+    minutes: Math.floor(diff / 60000) % 60,
+    seconds: Math.floor(diff / 1000) % 60
+  };
+
+  units.forEach(u => {
+    const el = document.getElementById(u);
+    const flip = el.closest(".flip");
+    if(prev[u] !== values[u]){
+      flip.classList.remove("animate");
+      void flip.offsetWidth; // reinicia animación
+      flip.classList.add("animate");
+      el.textContent = values[u];
+      prev[u] = values[u];
+    }
+  });
+}, 1000);
+</script>
+
 
 /* IMAGE */
 .outfit-img{
@@ -325,4 +353,5 @@ for(let i=0;i<45;i++){
 
 </body>
 </html>
+
 
