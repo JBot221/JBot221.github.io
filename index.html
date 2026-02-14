@@ -28,7 +28,7 @@ body{
 .gold-dust span{
   position:absolute;
   width:2px;height:2px;
-  background:rgba(201,178,109,.5);
+  background:rgba(201,178,109,.45);
   animation:fall linear infinite;
 }
 @keyframes fall{
@@ -39,14 +39,15 @@ body{
 /* HERO */
 .hero{
   height:100vh;
-  background:radial-gradient(circle at top,rgba(201,178,109,.15),transparent 60%),
-             linear-gradient(180deg,#123a2f,#0f2f26);
+  background:
+    radial-gradient(circle at top,rgba(201,178,109,.15),transparent 60%),
+    linear-gradient(180deg,#123a2f,#0f2f26);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  z-index:1;
   position:relative;
+  z-index:1;
 }
 .hero h2{
   letter-spacing:4px;
@@ -56,8 +57,8 @@ body{
 .hero h1{
   font-family:'Cinzel',serif;
   font-size:3.2rem;
-  color:#3dd6b5;
   margin:10px 0;
+  color:#3dd6b5;
 }
 
 /* SECTIONS */
@@ -106,13 +107,17 @@ body{
   transition:transform .6s;
 }
 .flip.fast .flip-inner{transition:.3s}
+.flip.medium .flip-inner{transition:.6s}
 .flip.slow .flip-inner{transition:1.2s}
 .flip span{
   font-size:1.7rem;
   color:#3dd6b5;
   display:block;
 }
-.flip small{font-size:.7rem;opacity:.7}
+.flip small{
+  font-size:.7rem;
+  opacity:.7;
+}
 
 /* IMAGE */
 .outfit-img{
@@ -130,10 +135,10 @@ body{
   margin-top:18px;
 }
 
-/* BUTTON */
+/* BUTTONS */
 .btn{
   display:inline-block;
-  margin-top:28px;
+  margin-top:22px;
   padding:14px 32px;
   background:linear-gradient(135deg,#3dd6b5,#c9b26d);
   color:#0f2f26;
@@ -145,8 +150,8 @@ body{
 /* MUSIC BUTTON */
 .music-btn{
   position:fixed;
-  bottom:20px;
-  right:20px;
+  bottom:18px;
+  right:18px;
   background:rgba(255,255,255,.08);
   border:none;
   border-radius:50%;
@@ -157,7 +162,11 @@ body{
   z-index:10;
 }
 
-.footer{padding:30px;font-size:.8rem;opacity:.5}
+.footer{
+  padding:30px;
+  font-size:.8rem;
+  opacity:.5;
+}
 </style>
 </head>
 
@@ -167,26 +176,41 @@ body{
 
 <button class="music-btn" id="musicBtn">🔊</button>
 
-<audio id="bgMusic" src="cancion.mp3" loop muted></audio>
+<audio id="bgMusic" src="cancion.mp3" loop></audio>
 
+<!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
 </section>
 
+<!-- CONTADOR -->
 <section class="section">
   <div class="card">
     <h3>Falta</h3>
     <div class="countdown">
       <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
-      <div class="flip slow"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
-      <div class="flip"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
+      <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
+      <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
       <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
     </div>
   </div>
 </section>
 
+<!-- REGALO -->
+<section class="section">
+  <div class="card">
+    <p>
+      Tu presencia es muy importante,<br>
+      pero si deseás hacerme un regalo,<br>
+      este es mi alias:
+    </p>
+    <h3>esme.riva.mp</h3>
+  </div>
+</section>
+
+<!-- VESTIMENTA -->
 <section class="section">
   <div class="card">
     <h3>Vestimenta</h3>
@@ -195,16 +219,35 @@ body{
   </div>
 </section>
 
+<!-- UBICACIÓN -->
 <section class="section">
   <div class="card">
     <h3>Ubicación</h3>
-    <p>Ricardo Rojas 765<br>Arrecifes, Buenos Aires</p>
+    <p>
+      <b>Crazy Night Party</b><br>
+      Ricardo Rojas 765<br>
+      Arrecifes, Buenos Aires
+    </p>
+
     <iframe class="map" loading="lazy"
-      src="https://www.google.com/maps?q=Ricardo+Rojas+765+Arrecifes+Buenos+Aires&output=embed">
+      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed">
     </iframe>
+
     <a class="btn" target="_blank"
-      href="https://www.google.com/maps?q=Ricardo+Rojas+765+Arrecifes+Buenos+Aires">
-      Abrir en Google Maps
+      href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
+      Abrir en Google Maps 📍
+    </a>
+  </div>
+</section>
+
+<!-- CONFIRMAR -->
+<section class="section">
+  <div class="card">
+    <h3>Confirmar asistencia</h3>
+    <a class="btn"
+      href="https://wa.me/5492478543904?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20tus%2015%20✨"
+      target="_blank">
+      Confirmar por WhatsApp 💬
     </a>
   </div>
 </section>
@@ -212,12 +255,12 @@ body{
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-/* POLVO */
+/* POLVO DORADO */
 const gold=document.getElementById("gold");
 for(let i=0;i<80;i++){
   const s=document.createElement("span");
   s.style.left=Math.random()*100+"%";
-  s.style.animationDuration=10+Math.random()*20+"s";
+  s.style.animationDuration=12+Math.random()*18+"s";
   s.style.opacity=Math.random();
   gold.appendChild(s);
 }
@@ -234,30 +277,30 @@ setInterval(()=>{
   seconds.textContent=Math.floor(d/1000)%60;
 },1000);
 
-/* ANIMACIONES */
+/* ANIMACIONES REUTILIZABLES */
 const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
+  e.forEach(x=>{
+    x.target.classList.toggle("visible",x.isIntersecting);
+  });
 },{threshold:.2});
 document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 
 /* MÚSICA */
 const music=document.getElementById("bgMusic");
 const btn=document.getElementById("musicBtn");
+let activated=false;
 
-music.volume=0;
-music.play();
-
-let active=false;
 document.addEventListener("click",()=>{
-  if(active)return;
-  music.muted=false;
+  if(activated)return;
+  music.volume=0;
+  music.play();
   let v=0;
   const fade=setInterval(()=>{
-    v+=0.05;
-    music.volume=Math.min(v,.8);
-    if(v>=.8)clearInterval(fade);
+    v+=0.04;
+    music.volume=Math.min(v,0.8);
+    if(v>=0.8)clearInterval(fade);
   },200);
-  active=true;
+  activated=true;
 });
 
 btn.onclick=()=>{
