@@ -5,7 +5,7 @@
 <title>Esmeralda · Mis 15</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
@@ -18,18 +18,45 @@ body{
   overflow-x:hidden;
 }
 
-/* ✨ POLVO DORADO */
-.gold-dust{
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.hero h2{
+  letter-spacing:4px;
+  color:#c9b26d;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;
+  color:#3dd6b5;
+  animation:entrada 2s ease, brillo 3s infinite alternate;
+}
+@keyframes entrada{
+  from{opacity:0;transform:scale(.8) translateY(30px)}
+  to{opacity:1;transform:none}
+}
+@keyframes brillo{
+  from{text-shadow:0 0 10px rgba(201,178,109,.3)}
+  to{text-shadow:0 0 25px rgba(201,178,109,.9)}
+}
+
+/* POLVO */
+#gold{
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:0;
 }
-.gold-dust span{
+.particle{
   position:absolute;
-  width:2px;
-  height:2px;
-  background:rgba(201,178,109,.45);
+  width:3px;height:3px;
+  background:rgba(201,178,109,.7);
+  border-radius:50%;
   animation:fall linear infinite;
 }
 @keyframes fall{
@@ -37,62 +64,17 @@ body{
   to{transform:translateY(110vh)}
 }
 
-/* HERO */
-.hero{
-  height:100vh;
-  background:
-    radial-gradient(circle at top,rgba(201,178,109,.15),transparent 60%),
-    linear-gradient(180deg,#123a2f,#0f2f26);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  z-index:1;
-}
-.hero h2{
-  letter-spacing:4px;
-  font-weight:300;
-  color:#c9b26d;
-}
-
-/* 👑 NOMBRE */
-.hero h1{
-  font-family:'Cinzel',serif;
-  font-size:3.2rem;
-  margin:10px 0;
-  background:linear-gradient(120deg,#2fd1b0,#c9b26d,#2fd1b0);
-  background-size:300% 300%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:entrance 1.8s ease forwards, goldShine 6s ease-in-out infinite;
-  opacity:0;
-}
-@keyframes entrance{
-  from{opacity:0;transform:scale(.85) translateY(30px)}
-  to{opacity:1;transform:scale(1) translateY(0)}
-}
-@keyframes goldShine{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
 /* SECTIONS */
 .section{
   padding:80px 20px;
   opacity:0;
-  transform:translateY(40px);
-  transition:all .9s ease;
+  transform:translateY(30px);
+  transition:.9s;
   position:relative;
   z-index:1;
 }
-.section.visible{
-  opacity:1;
-  transform:translateY(0);
-}
+.section.visible{opacity:1;transform:none}
 
-/* CARD */
 .card{
   max-width:420px;
   margin:auto;
@@ -100,213 +82,148 @@ body{
   padding:30px;
   border-radius:22px;
   backdrop-filter:blur(8px);
-  box-shadow:0 15px 40px rgba(0,0,0,.35);
-}
-.card h3{
-  font-family:'Cinzel',serif;
-  color:#c9b26d;
 }
 
-/* ⏳ COUNTDOWN FLIP REAL */
-.countdown{
-  display:flex;
-  justify-content:space-between;
-}
+/* CONTADOR */
+.countdown{display:flex;justify-content:space-between}
 .flip{
-  perspective:800px;
+  background:#0006;
+  padding:12px;
+  border-radius:12px;
   width:70px;
 }
-.flip-inner{
-  background:rgba(0,0,0,.35);
-  border-radius:12px;
-  padding:12px 0;
-  transform-style:preserve-3d;
-}
-.flip-inner.animate{
-  transform:rotateX(-180deg);
-}
-.flip span{
-  font-size:1.7rem;
-  color:#3dd6b5;
-}
-.flip small{
-  font-size:.7rem;
-  opacity:.7;
-}
-.flip.fast .flip-inner{transition:.25s}
-.flip.medium .flip-inner{transition:.6s}
-.flip.slow .flip-inner{transition:1.2s}
+.flip span{font-size:1.6rem;color:#3dd6b5}
 
-/* IMAGE */
-.outfit-img{
-  width:100%;
-  border-radius:16px;
-  margin-top:18px;
-}
-
-/* MAP */
-.map{
-  width:100%;
-  height:260px;
-  border-radius:16px;
-  border:none;
-  margin-top:18px;
-}
-
-/* BUTTONS */
+/* BOTONES */
 .btn{
   display:inline-block;
-  margin-top:22px;
-  padding:14px 32px;
+  margin-top:25px;
+  padding:14px 34px;
+  border-radius:40px;
   background:linear-gradient(135deg,#3dd6b5,#c9b26d);
   color:#0f2f26;
-  text-decoration:none;
   font-weight:600;
-  border-radius:40px;
+  text-decoration:none;
 }
 
-/* MUSIC */
-.music-btn{
+/* MUSICA */
+#musicBtn{
   position:fixed;
-  bottom:18px;
-  right:18px;
-  background:rgba(255,255,255,.08);
+  bottom:20px;
+  right:20px;
+  background:#0007;
   border:none;
-  border-radius:50%;
-  width:44px;
-  height:44px;
   color:#c9b26d;
-  font-size:18px;
+  border-radius:50%;
+  width:48px;
+  height:48px;
+  font-size:20px;
   z-index:10;
-}
-
-.footer{
-  padding:30px;
-  font-size:.8rem;
-  opacity:.5;
 }
 </style>
 </head>
 
 <body>
 
-<div class="gold-dust" id="gold"></div>
+<div id="gold"></div>
 
-<button class="music-btn" id="musicBtn">🔊</button>
-<audio id="bgMusic" src="cancion.mp3" loop></audio>
-
-<!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
 </section>
 
-<!-- CONTADOR -->
 <section class="section">
   <div class="card">
     <h3>Falta</h3>
     <div class="countdown">
-      <div class="flip slow"><div class="flip-inner" id="dFlip"><span id="days">0</span><small>Días</small></div></div>
-      <div class="flip medium"><div class="flip-inner" id="hFlip"><span id="hours">0</span><small>Horas</small></div></div>
-      <div class="flip medium"><div class="flip-inner" id="mFlip"><span id="minutes">0</span><small>Min</small></div></div>
-      <div class="flip fast"><div class="flip-inner" id="sFlip"><span id="seconds">0</span><small>Seg</small></div></div>
+      <div class="flip"><span id="d">0</span><br>Días</div>
+      <div class="flip"><span id="h">0</span><br>Hs</div>
+      <div class="flip"><span id="m">0</span><br>Min</div>
+      <div class="flip"><span id="s">0</span><br>Seg</div>
     </div>
   </div>
 </section>
 
-<!-- UBICACIÓN -->
 <section class="section">
   <div class="card">
-    <h3>Ubicación</h3>
-    <p>
-      <b>Crazy Night Party</b><br>
-      Ricardo Rojas 765<br>
-      Arrecifes, Buenos Aires
-    </p>
-
-    <iframe class="map"
-      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
-      loading="lazy">
-    </iframe>
-
-    <a class="btn"
-      href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes"
-      target="_blank">
-      Abrir en Google Maps 📍
-    </a>
+    <p>Alias para regalo:</p>
+    <h3>esme.riva.mp</h3>
+    <a class="btn" onclick="confirmarAsistencia()">Confirmar asistencia 💬</a>
   </div>
 </section>
 
-<div class="footer">Esmeralda · Mis 15 ✨</div>
+<section class="section">
+  <div class="card">
+    <h3>Ubicación</h3>
+    <p><b>Crazy Night Party</b><br>Ricardo Rojas 765<br>Arrecifes</p>
+    <iframe class="map" src="https://www.google.com/maps?q=Crazy+Night+Party+Arrecifes&output=embed"></iframe>
+  </div>
+</section>
+
+<button id="musicBtn">🔈</button>
+
+<audio id="music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="tick" src="tick.mp3"></audio>
 
 <script>
 /* POLVO */
-const gold=document.getElementById("gold");
-for(let i=0;i<90;i++){
-  const s=document.createElement("span");
-  s.style.left=Math.random()*100+"%";
-  s.style.animationDuration=15+Math.random()*20+"s";
-  s.style.opacity=Math.random();
-  gold.appendChild(s);
+for(let i=0;i<80;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=10+Math.random()*10+'s';
+  document.getElementById('gold').appendChild(p);
 }
 
-/* CONTADOR + FLIP */
-const eventDate=new Date("2026-04-25T21:00:00-03:00").getTime();
-const flips={days:dFlip,hours:hFlip,minutes:mFlip,seconds:sFlip};
-
-setInterval(()=>{
-  const diff=eventDate-Date.now();
-  if(diff<0)return;
-
-  const values={
-    days:Math.floor(diff/86400000),
-    hours:Math.floor(diff/3600000)%24,
-    minutes:Math.floor(diff/60000)%60,
-    seconds:Math.floor(diff/1000)%60
-  };
-
-  for(const k in values){
-    const el=document.getElementById(k);
-    if(el.textContent!=values[k]){
-      flips[k].classList.add("animate");
-      setTimeout(()=>flips[k].classList.remove("animate"),300);
-      el.textContent=values[k];
+/* OBSERVER */
+document.querySelectorAll('.section').forEach(s=>{
+  new IntersectionObserver(e=>{
+    if(e[0].isIntersecting){
+      s.classList.add('visible');
+      document.getElementById('tick').play();
     }
-  }
+  },{threshold:.3}).observe(s);
+});
+
+/* CONTADOR */
+const date=new Date("2026-04-25T21:00:00-03:00").getTime();
+setInterval(()=>{
+  const now=Date.now();
+  const diff=date-now;
+  if(diff<0)return;
+  d.innerText=Math.floor(diff/86400000);
+  h.innerText=Math.floor(diff/3600000)%24;
+  m.innerText=Math.floor(diff/60000)%60;
+  s.innerText=Math.floor(diff/1000)%60;
+  tick.play();
 },1000);
 
-/* ANIMACIONES */
-const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
-},{threshold:.2});
-document.querySelectorAll(".section").forEach(s=>obs.observe(s));
-
-/* MÚSICA */
-const music=document.getElementById("bgMusic");
-const btn=document.getElementById("musicBtn");
-let started=false;
-
-function startMusic(){
-  if(started)return;
-  music.volume=0;
-  music.play();
-  let v=0;
-  const fade=setInterval(()=>{
-    v+=0.04;
-    music.volume=Math.min(v,0.8);
-    if(v>=0.8)clearInterval(fade);
-  },200);
-  started=true;
+/* WHATSAPP */
+function confirmarAsistencia(){
+  const msg=encodeURIComponent("Hola! Confirmo mi asistencia a los 15 de Esmeralda ✨");
+  window.open("https://wa.me/2478543904?text="+msg,"_blank");
 }
 
-document.addEventListener("touchstart",startMusic,{once:true});
-document.addEventListener("click",startMusic,{once:true});
+/* MUSICA */
+const music=document.getElementById('music');
+let started=false;
+document.body.addEventListener('click',()=>{
+  if(!started){
+    started=true;
+    music.volume=0.1;
+    music.play();
+    let v=0.1;
+    const fade=setInterval(()=>{
+      if(v<0.7){v+=0.05;music.volume=v}else clearInterval(fade);
+    },300);
+  }
+},{once:true});
 
-btn.onclick=()=>{
-  music.muted=!music.muted;
-  btn.textContent=music.muted?"🔇":"🔊";
-};
+musicBtn.onclick=()=>{music.paused?music.play():music.pause()}
 </script>
 
 </body>
