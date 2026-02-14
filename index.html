@@ -34,8 +34,8 @@ body {
 }
 
 .hero h2 {
-  font-weight: 300;
   letter-spacing: 3px;
+  font-weight: 300;
 }
 
 .hero h1 {
@@ -45,21 +45,9 @@ body {
   text-shadow: 0 0 20px #000;
 }
 
-.hero span {
-  font-size: 1.2rem;
-  opacity: 0.9;
-}
-
-.scroll {
-  margin-top: 40px;
-  font-size: 0.9rem;
-  opacity: 0.7;
-}
-
 /* SECTIONS */
 .section {
   padding: 70px 20px;
-  background: #0f3d2e;
 }
 
 .card {
@@ -71,10 +59,9 @@ body {
   backdrop-filter: blur(6px);
 }
 
-/* TEXT */
 .card h3 {
-  margin-top: 20px;
   color: #00ffcc;
+  margin-bottom: 15px;
 }
 
 .card p {
@@ -84,13 +71,40 @@ body {
 /* BUTTON */
 .btn {
   display: inline-block;
-  margin-top: 30px;
+  margin-top: 25px;
   padding: 15px 35px;
   background: linear-gradient(120deg, #00ffcc, #d4af37);
   color: black;
   text-decoration: none;
   font-weight: bold;
   border-radius: 40px;
+}
+
+/* COUNTDOWN */
+.countdown {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.time {
+  font-size: 1.4rem;
+}
+
+/* IMAGE */
+.outfit-img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+
+/* MAP */
+.map {
+  width: 100%;
+  height: 250px;
+  border-radius: 15px;
+  border: none;
+  margin-top: 15px;
 }
 
 /* FOOTER */
@@ -104,20 +118,32 @@ body {
 
 <body>
 
-<!-- Música (solo para pruebas locales / privadas) -->
+<!-- Música -->
 <audio autoplay loop>
-  <source src="frutilla.mp3" type="audio/mpeg">
+  <source src="cancion.mp3" type="audio/mpeg">
 </audio>
 
 <!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
-  <span>25 · 04 · 21:00 hs</span>
-  <div class="scroll">Deslizá para ver más ↓</div>
+  <p>25 · 04 · 21:00 hs</p>
 </section>
 
-<!-- INFO -->
+<!-- CONTADOR -->
+<section class="section">
+  <div class="card">
+    <h3>Falta</h3>
+    <div class="countdown">
+      <div class="time"><span id="days">0</span><br>Días</div>
+      <div class="time"><span id="hours">0</span><br>Horas</div>
+      <div class="time"><span id="minutes">0</span><br>Min</div>
+      <div class="time"><span id="seconds">0</span><br>Seg</div>
+    </div>
+  </div>
+</section>
+
+<!-- REGALO -->
 <section class="section">
   <div class="card">
     <p>
@@ -125,18 +151,30 @@ body {
       pero si estás pensando en regalarme algo<br>
       te dejo mi alias:
     </p>
-
     <h3>esme.riva.mp</h3>
   </div>
 </section>
 
-<!-- EVENTO -->
+<!-- VESTIMENTA -->
 <section class="section">
   <div class="card">
-    <p>📍 <b>Crazy Night Party</b><br>Richard Rojas 765</p>
-    <p>🕘 <b>Hora:</b> 21:00</p>
-    <p>📅 <b>Fecha:</b> 25/04</p>
-    <p>👗 <b>Vestimenta:</b> Elegante · Total Black</p>
+    <h3>Vestimenta</h3>
+    <p>Elegante · Total Black</p>
+    <img src="oufit.jfif" alt="Vestimenta" class="outfit-img">
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="section">
+  <div class="card">
+    <h3>Ubicación</h3>
+    <p><b>Crazy Night Party</b><br>Richard Rojas 765</p>
+
+    <iframe
+      class="map"
+      src="https://www.google.com/maps?q=Richard+Rojas+765&output=embed"
+      loading="lazy">
+    </iframe>
 
     <a class="btn" href="https://wa.me/5491112345678" target="_blank">
       Confirmar presencia 💬
@@ -148,8 +186,27 @@ body {
   Esmeralda · Mis 15 ✨
 </div>
 
+<!-- CONTADOR SCRIPT -->
+<script>
+const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = eventDate - now;
+
+  if (diff < 0) return;
+
+  document.getElementById("days").innerText =
+    Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("hours").innerText =
+    Math.floor((diff / (1000 * 60 * 60)) % 24);
+  document.getElementById("minutes").innerText =
+    Math.floor((diff / (1000 * 60)) % 60);
+  document.getElementById("seconds").innerText =
+    Math.floor((diff / 1000) % 60);
+}, 1000);
+</script>
+
 </body>
 </html>
-
-
 
