@@ -5,7 +5,7 @@
 <title>Esmeralda · Mis 15</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- TIPOGRAFÍAS -->
+<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -20,6 +20,7 @@ body {
   background: #0f2f26;
   color: #f5f5f5;
   text-align: center;
+  overflow-x: hidden;
 }
 
 /* HERO */
@@ -32,6 +33,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .hero h2 {
@@ -42,7 +44,7 @@ body {
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 4rem;
+  font-size: clamp(2.8rem, 8vw, 4rem);
   margin: 10px 0;
   color: #3dd6b5;
   text-shadow: 0 6px 25px rgba(0,0,0,0.6);
@@ -52,9 +54,9 @@ body {
   opacity: 0.85;
 }
 
-/* SECTIONS + ANIMACIÓN */
+/* SECCIONES */
 .section {
-  padding: 80px 20px;
+  padding: 70px 18px;
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.9s ease;
@@ -70,7 +72,7 @@ body {
   max-width: 420px;
   margin: auto;
   background: rgba(255,255,255,0.06);
-  padding: 30px;
+  padding: 28px;
   border-radius: 22px;
   backdrop-filter: blur(8px);
   box-shadow: 0 15px 40px rgba(0,0,0,0.35);
@@ -80,7 +82,6 @@ body {
   font-family: 'Playfair Display', serif;
   color: #c9b26d;
   margin-bottom: 15px;
-  letter-spacing: 1px;
 }
 
 .card p {
@@ -92,14 +93,15 @@ body {
 .countdown {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
   margin-top: 20px;
 }
 
 .flip {
   background: rgba(0,0,0,0.35);
-  border-radius: 12px;
-  padding: 12px 8px;
-  width: 72px;
+  border-radius: 14px;
+  padding: 14px 8px;
+  width: 70px;
 }
 
 .flip span {
@@ -112,14 +114,14 @@ body {
   opacity: 0.7;
 }
 
-/* IMAGE */
+/* IMAGEN */
 .outfit-img {
   width: 100%;
   border-radius: 16px;
   margin-top: 18px;
 }
 
-/* MAP */
+/* MAPA */
 .map {
   width: 100%;
   height: 260px;
@@ -128,11 +130,11 @@ body {
   margin-top: 18px;
 }
 
-/* BUTTON */
+/* BOTONES */
 .btn {
   display: inline-block;
-  margin-top: 28px;
-  padding: 15px 36px;
+  margin-top: 22px;
+  padding: 16px 36px;
   background: linear-gradient(135deg, #3dd6b5, #c9b26d);
   color: #0f2f26;
   text-decoration: none;
@@ -146,10 +148,45 @@ body {
   transform: scale(1.05);
 }
 
+/* WHATSAPP */
+.btn-wsp {
+  background: linear-gradient(135deg, #25d366, #c9b26d);
+}
+
+/* FOOTER */
 .footer {
   padding: 30px;
   font-size: 0.8rem;
   opacity: 0.5;
+}
+
+/* PARTÍCULAS DORADAS */
+.sparkle {
+  position: fixed;
+  top: -10px;
+  width: 4px;
+  height: 4px;
+  background: #c9b26d;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .countdown {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .flip {
+    width: 64px;
+  }
 }
 </style>
 </head>
@@ -193,7 +230,7 @@ body {
   <div class="card">
     <h3>Vestimenta</h3>
     <p>Elegante · Total Black</p>
-    <img src="oufit.jfif" class="outfit-img" alt="Vestimenta">
+    <img src="oufit.jfif" class="outfit-img">
   </div>
 </section>
 
@@ -203,16 +240,20 @@ body {
     <h3>Ubicación</h3>
     <p><b>Crazy Night Party</b><br>Ricardo Rojas 765</p>
 
-    <iframe
-      class="map"
-      loading="lazy"
+    <iframe class="map"
       src="https://www.google.com/maps?q=-34.057703,-60.1033036&z=17&output=embed">
     </iframe>
 
     <a class="btn"
-       href="https://www.google.com/maps/place/-34.057703,-60.1033036"
-       target="_blank">
-       Abrir en Google Maps 📍
+      href="https://www.google.com/maps/place/-34.057703,-60.1033036"
+      target="_blank">
+      Abrir en Google Maps 📍
+    </a>
+
+    <a class="btn btn-wsp"
+      href="https://wa.me/5492478543904?text=Hola!%20Confirmo%20mi%20presencia%20para%20los%2015%20de%20Esmeralda%20✨"
+      target="_blank">
+      Confirmar presencia 💬
     </a>
   </div>
 </section>
@@ -224,7 +265,6 @@ body {
 <script>
 /* CONTADOR */
 const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
-
 setInterval(() => {
   const now = new Date().getTime();
   const diff = eventDate - now;
@@ -236,24 +276,29 @@ setInterval(() => {
   seconds.innerText = Math.floor((diff / 1000) % 60);
 }, 1000);
 
-/* ANIMACIONES (ENTRA Y SALE) */
+/* ANIMACIONES REACTIVABLES */
 const sections = document.querySelectorAll(".section");
-
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-    } else {
-      entry.target.classList.remove("visible");
-    }
+    entry.target.classList.toggle("visible", entry.isIntersecting);
   });
 }, { threshold: 0.2 });
-
 sections.forEach(section => observer.observe(section));
+
+/* PARTÍCULAS */
+for (let i = 0; i < 25; i++) {
+  const s = document.createElement("div");
+  s.className = "sparkle";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.animationDuration = (5 + Math.random() * 6) + "s";
+  s.style.opacity = Math.random() * 0.5 + 0.3;
+  document.body.appendChild(s);
+}
 </script>
 
 </body>
 </html>
+
 
 
 
