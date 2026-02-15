@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ✨ POLVO DORADO DE FONDO */
+/* ✨ POLVO DORADO */
 .sparkle{
   position:fixed;
   top:-10vh;
@@ -49,14 +49,12 @@ body{
   z-index:1;
 }
 
-/* TITULOS */
 .hero h2{
   letter-spacing:4px;
   font-weight:300;
   color:#c9b26d;
 }
 
-/* ✨ NOMBRE */
 .hero h1{
   font-family:'Cinzel',serif;
   font-size:3.2rem;
@@ -133,14 +131,11 @@ body{
 .flip span{
   font-size:1.7rem;
   color:#3dd6b5;
-  display:block;
 }
 .flip small{
   font-size:.7rem;
   opacity:.7;
 }
-
-/* FLIP */
 .flip.animate .flip-inner{
   animation:flip 0.6s ease;
 }
@@ -196,8 +191,6 @@ body{
   padding:30px;
   font-size:.8rem;
   opacity:.5;
-  position:relative;
-  z-index:1;
 }
 </style>
 </head>
@@ -207,15 +200,23 @@ body{
 <button class="music-btn" id="musicBtn">🔊</button>
 <audio id="bgMusic" src="cancion.mp3" loop></audio>
 
+<!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
+
+  <!-- BOTÓN AGENDAR -->
+  <a class="btn" target="_blank"
+     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+de+Esmeralda&dates=20260425T210000/20260426T020000&details=Fiesta+de+15+años+de+Esmeralda&location=Crazy+Night+Party,+Arrecifes">
+    Agendar en Google Calendar 📅
+  </a>
 </section>
 
+<!-- COUNTDOWN -->
 <section class="section">
   <div class="card">
-    <h3>Faltan</h3>
+    <h3>Falta</h3>
     <div class="countdown">
       <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
       <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
@@ -225,6 +226,7 @@ body{
   </div>
 </section>
 
+<!-- VESTIMENTA -->
 <section class="section">
   <div class="card">
     <h3>Vestimenta</h3>
@@ -233,6 +235,7 @@ body{
   </div>
 </section>
 
+<!-- UBICACIÓN -->
 <section class="section">
   <div class="card">
     <h3>Ubicación</h3>
@@ -240,8 +243,7 @@ body{
 
     <iframe class="map"
       src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
-      loading="lazy">
-    </iframe>
+      loading="lazy"></iframe>
 
     <a class="btn" target="_blank"
       href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
@@ -250,7 +252,7 @@ body{
   </div>
 </section>
 
-<!-- REGALO AHORA ABAJO DEL GPS -->
+<!-- REGALO -->
 <section class="section">
   <div class="card">
     <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
@@ -258,6 +260,7 @@ body{
   </div>
 </section>
 
+<!-- CONFIRMAR -->
 <section class="section">
   <div class="card">
     <h3>Confirmar asistencia</h3>
@@ -340,4 +343,3 @@ for(let i=0;i<45;i++){
 
 </body>
 </html>
-
