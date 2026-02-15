@@ -56,7 +56,7 @@ body{
   color:#c9b26d;
 }
 
-/* ✨ NOMBRE – BRILLO + ENTRADA */
+/* ✨ NOMBRE */
 .hero h1{
   font-family:'Cinzel',serif;
   font-size:3.2rem;
@@ -140,7 +140,7 @@ body{
   opacity:.7;
 }
 
-/* FLIP ANIMADO */
+/* FLIP */
 .flip.animate .flip-inner{
   animation:flip 0.6s ease;
 }
@@ -207,14 +207,12 @@ body{
 <button class="music-btn" id="musicBtn">🔊</button>
 <audio id="bgMusic" src="cancion.mp3" loop></audio>
 
-<!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
 </section>
 
-<!-- COUNTDOWN -->
 <section class="section">
   <div class="card">
     <h3>Falta</h3>
@@ -227,15 +225,6 @@ body{
   </div>
 </section>
 
-<!-- REGALO -->
-<section class="section">
-  <div class="card">
-    <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
-    <h3>esme.riva.mp</h3>
-  </div>
-</section>
-
-<!-- VESTIMENTA -->
 <section class="section">
   <div class="card">
     <h3>Vestimenta</h3>
@@ -244,7 +233,6 @@ body{
   </div>
 </section>
 
-<!-- UBICACIÓN -->
 <section class="section">
   <div class="card">
     <h3>Ubicación</h3>
@@ -262,7 +250,14 @@ body{
   </div>
 </section>
 
-<!-- CONFIRMAR -->
+<!-- REGALO AHORA ABAJO DEL GPS -->
+<section class="section">
+  <div class="card">
+    <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
+    <h3>esme.riva.mp</h3>
+  </div>
+</section>
+
 <section class="section">
   <div class="card">
     <h3>Confirmar asistencia</h3>
@@ -277,7 +272,6 @@ body{
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-/* CONTADOR CON FLIP ANIMADO */
 const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
 const units = ["days","hours","minutes","seconds"];
 let prev = {};
@@ -306,13 +300,11 @@ setInterval(() => {
   });
 }, 1000);
 
-/* ANIMACIONES SECTIONS */
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
 },{threshold:.2});
 document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 
-/* MÚSICA */
 const music=document.getElementById("bgMusic");
 const btn=document.getElementById("musicBtn");
 let activated=false;
@@ -336,7 +328,6 @@ btn.onclick=()=>{
   btn.textContent=music.muted?"🔇":"🔊";
 };
 
-/* GENERAR BRILLOS */
 for(let i=0;i<45;i++){
   const s=document.createElement("div");
   s.className="sparkle";
