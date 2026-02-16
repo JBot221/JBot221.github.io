@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ✨ POLVO DORADO FONDO */
+/* ✨ POLVO DORADO */
 .sparkle{
   position:fixed;
   top:-10vh;
@@ -33,24 +33,6 @@ body{
 }
 @keyframes fall{
   to{transform:translateY(120vh)}
-}
-
-/* 🎉 CONFETI CLICK */
-.confetti{
-  position:fixed;
-  width:6px;
-  height:10px;
-  background:linear-gradient(180deg,#ffe8a3,#c9b26d);
-  opacity:.9;
-  pointer-events:none;
-  z-index:5;
-  animation:confettiFall 1.8s ease-out forwards;
-}
-@keyframes confettiFall{
-  to{
-    transform:translate(var(--x), var(--y)) rotate(720deg);
-    opacity:0;
-  }
 }
 
 /* HERO */
@@ -227,7 +209,7 @@ body{
 <!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
-  <h1 id="name">Esmeralda</h1>
+  <h1 id="nameTitle">Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
 
   <div class="music-wrapper">
@@ -255,6 +237,7 @@ body{
   </div>
 </section>
 
+<!-- VESTIMENTA -->
 <section class="section">
   <div class="card">
     <h3>Vestimenta</h3>
@@ -263,6 +246,7 @@ body{
   </div>
 </section>
 
+<!-- UBICACIÓN -->
 <section class="section">
   <div class="card">
     <h3>Ubicación</h3>
@@ -275,6 +259,7 @@ body{
   </div>
 </section>
 
+<!-- REGALO -->
 <section class="section">
   <div class="card">
     <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
@@ -282,6 +267,20 @@ body{
   </div>
 </section>
 
+<!-- 📸 ENVIAR FOTOS -->
+<section class="section">
+  <div class="card">
+    <h3>Fotos del cumpleaños</h3>
+    <p>Si sacaste fotos o videos,<br>mandalos por acá 💖</p>
+    <a class="btn"
+      href="https://wa.me/5492478514956?text=Estas%20son%20las%20fotos%20del%2015%20%E2%9C%A8"
+      target="_blank">
+      Enviar fotos 📸
+    </a>
+  </div>
+</section>
+
+<!-- CONFIRMAR -->
 <section class="section">
   <div class="card">
     <h3>Confirmar asistencia</h3>
@@ -296,7 +295,6 @@ body{
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-/* COUNTDOWN */
 const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
 const units=["days","hours","minutes","seconds"];
 let prev={};
@@ -323,13 +321,11 @@ setInterval(()=>{
   });
 },1000);
 
-/* SECTIONS FADE */
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
 },{threshold:.2});
 document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 
-/* MUSIC */
 const music=document.getElementById("bgMusic");
 const btn=document.getElementById("musicBtn");
 let playing=false;
@@ -348,33 +344,6 @@ btn.onclick=()=>{
   playing=!playing;
 };
 
-/* CONFETI DESDE NOMBRE */
-const name=document.getElementById("name");
-let cooldown=false;
-
-name.addEventListener("click",()=>{
-  if(cooldown) return;
-  cooldown=true;
-
-  const r=name.getBoundingClientRect();
-  const x=r.left+r.width/2;
-  const y=r.top+r.height/2;
-
-  for(let i=0;i<30;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=x+"px";
-    c.style.top=y+"px";
-    c.style.setProperty("--x",(Math.random()*200-100)+"px");
-    c.style.setProperty("--y",(Math.random()*300+100)+"px");
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),2000);
-  }
-
-  setTimeout(()=>cooldown=false,3000);
-});
-
-/* POLVO FONDO */
 for(let i=0;i<45;i++){
   const s=document.createElement("div");
   s.className="sparkle";
@@ -387,7 +356,3 @@ for(let i=0;i<45;i++){
 
 </body>
 </html>
-
-
-
-
