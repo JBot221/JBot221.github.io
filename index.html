@@ -18,7 +18,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ✨ POLVO DORADO */
+/* ✨ POLVO DORADO DE FONDO */
 .sparkle{
   position:fixed;
   top:-10vh;
@@ -26,7 +26,7 @@ body{
   height:4px;
   background:radial-gradient(circle,#ffe8a3,#c9b26d);
   border-radius:50%;
-  opacity:.6;
+  opacity:.5;
   animation:fall linear infinite;
   pointer-events:none;
   z-index:0;
@@ -64,7 +64,6 @@ body{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   animation:goldShine 6s ease-in-out infinite;
-  cursor:pointer;
 }
 
 @keyframes goldShine{
@@ -185,7 +184,7 @@ body{
 /* BUTTONS */
 .btn{
   display:inline-block;
-  margin-top:10px;
+  margin-top:14px;
   padding:14px 32px;
   background:linear-gradient(135deg,#3dd6b5,#c9b26d);
   color:#0f2f26;
@@ -209,7 +208,7 @@ body{
 <!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
-  <h1 id="nameTitle">Esmeralda</h1>
+  <h1>Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
 
   <div class="music-wrapper">
@@ -267,7 +266,7 @@ body{
   </div>
 </section>
 
-<!-- 📸 ENVIAR FOTOS -->
+<!-- 📸 FOTOS -->
 <section class="section">
   <div class="card">
     <h3>Fotos del cumpleaños</h3>
@@ -295,6 +294,7 @@ body{
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
+/* COUNTDOWN */
 const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
 const units=["days","hours","minutes","seconds"];
 let prev={};
@@ -321,11 +321,13 @@ setInterval(()=>{
   });
 },1000);
 
+/* SCROLL */
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
 },{threshold:.2});
 document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 
+/* MUSIC */
 const music=document.getElementById("bgMusic");
 const btn=document.getElementById("musicBtn");
 let playing=false;
@@ -344,12 +346,13 @@ btn.onclick=()=>{
   playing=!playing;
 };
 
+/* POLVO DORADO */
 for(let i=0;i<45;i++){
   const s=document.createElement("div");
   s.className="sparkle";
   s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=(8+Math.random()*10)+"s";
-  s.style.opacity=Math.random()*0.6+0.2;
+  s.style.animationDuration=(10+Math.random()*10)+"s";
+  s.style.opacity=Math.random()*0.5+0.2;
   document.body.appendChild(s);
 }
 </script>
