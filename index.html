@@ -35,6 +35,24 @@ body{
   to{transform:translateY(120vh)}
 }
 
+/* 🎉 CONFETI */
+.confetti{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:2px;
+  animation:confetti-fly 1.8s ease-out forwards;
+  z-index:5;
+}
+@keyframes confetti-fly{
+  to{
+    transform:
+      translate(var(--x), var(--y))
+      rotate(720deg);
+    opacity:0;
+  }
+}
+
 /* HERO */
 .hero{
   height:100vh;
@@ -64,7 +82,7 @@ body{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   animation:goldShine 6s ease-in-out infinite;
-  cursor:pointer;
+  position:relative;
 }
 
 @keyframes goldShine{
@@ -112,8 +130,6 @@ body{
   opacity:0;
   transform:translateY(40px);
   transition:all .9s ease;
-  position:relative;
-  z-index:1;
 }
 .section.visible{
   opacity:1;
@@ -209,7 +225,7 @@ body{
 <!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
-  <h1 id="nameTitle">Esmeralda</h1>
+  <h1 id="title">Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
 
   <div class="music-wrapper">
@@ -237,7 +253,7 @@ body{
   </div>
 </section>
 
-<!-- VESTIMENTA -->
+<!-- RESTO -->
 <section class="section">
   <div class="card">
     <h3>Vestimenta</h3>
@@ -246,7 +262,6 @@ body{
   </div>
 </section>
 
-<!-- UBICACIÓN -->
 <section class="section">
   <div class="card">
     <h3>Ubicación</h3>
@@ -259,7 +274,6 @@ body{
   </div>
 </section>
 
-<!-- REGALO -->
 <section class="section">
   <div class="card">
     <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
@@ -267,25 +281,11 @@ body{
   </div>
 </section>
 
-<!-- 📸 ENVIAR FOTOS -->
-<section class="section">
-  <div class="card">
-    <h3>Fotos del cumpleaños</h3>
-    <p>Si sacaste fotos o videos,<br>mandalos por acá 💖</p>
-    <a class="btn"
-      href="https://wa.me/5492478514956?text=Estas%20son%20las%20fotos%20del%2015%20%E2%9C%A8"
-      target="_blank">
-      Enviar fotos 📸
-    </a>
-  </div>
-</section>
-
-<!-- CONFIRMAR -->
 <section class="section">
   <div class="card">
     <h3>Confirmar asistencia</h3>
     <a class="btn"
-      href="https://wa.me/5492478514956?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20los%2015%20de%20Esmeralda%20%E2%9C%A8"
+      href="https://wa.me/5492478543904?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20tus%2015%20✨"
       target="_blank">
       Confirmar por WhatsApp 💬
     </a>
@@ -295,7 +295,25 @@ body{
 <div class="footer">Esmeralda · Mis 15 ✨</div>
 
 <script>
-const eventDate = new Date("2026-04-25T21:00:00-03:00").getTime();
+/* CONFETI AL ENTRAR */
+window.addEventListener("load",()=>{
+  const title=document.getElementById("title");
+  const rect=title.getBoundingClientRect();
+  for(let i=0;i<50;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=rect.left+rect.width/2+"px";
+    c.style.top=rect.top+rect.height/2+"px";
+    c.style.background=Math.random()>0.5?"#c9b26d":"#3dd6b5";
+    c.style.setProperty("--x",(Math.random()*400-200)+"px");
+    c.style.setProperty("--y",(Math.random()*400-200)+"px");
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1800);
+  }
+});
+
+/* CONTADOR */
+const eventDate=new Date("2026-04-25T21:00:00-03:00").getTime();
 const units=["days","hours","minutes","seconds"];
 let prev={};
 
@@ -321,11 +339,13 @@ setInterval(()=>{
   });
 },1000);
 
+/* SECTIONS */
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>x.target.classList.toggle("visible",x.isIntersecting));
 },{threshold:.2});
 document.querySelectorAll(".section").forEach(s=>obs.observe(s));
 
+/* MÚSICA */
 const music=document.getElementById("bgMusic");
 const btn=document.getElementById("musicBtn");
 let playing=false;
@@ -334,16 +354,15 @@ btn.onclick=()=>{
   if(!playing){
     music.volume=0.8;
     music.play();
-    btn.classList.add("playing");
     btn.textContent="❚❚";
   }else{
     music.pause();
-    btn.classList.remove("playing");
     btn.textContent="♪";
   }
   playing=!playing;
 };
 
+/* POLVO */
 for(let i=0;i<45;i++){
   const s=document.createElement("div");
   s.className="sparkle";
