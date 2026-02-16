@@ -88,7 +88,6 @@ body{
   width:6px;
   height:10px;
   background:linear-gradient(135deg,#ffe8a3,#c9b26d);
-  opacity:.9;
   pointer-events:none;
   z-index:20;
   animation:confetti-fall 1.8s ease-out forwards;
@@ -141,11 +140,7 @@ body{
   background:rgba(0,0,0,.35);
   border-radius:12px;
   padding:12px 0;
-  transition:transform .6s;
 }
-.flip.fast .flip-inner{transition:.3s}
-.flip.medium .flip-inner{transition:.6s}
-.flip.slow .flip-inner{transition:1.2s}
 .flip span{
   font-size:1.7rem;
   color:#3dd6b5;
@@ -178,7 +173,7 @@ body{
   margin-top:18px;
 }
 
-/* BUTTONS */
+/* BUTTON */
 .btn{
   display:inline-block;
   margin-top:10px;
@@ -200,8 +195,6 @@ body{
 
 <body>
 
-<audio id="bgMusic" src="cancion.mp3" loop></audio>
-
 <!-- HERO -->
 <section class="hero">
   <h2>MIS 15 AÑOS</h2>
@@ -213,16 +206,61 @@ body{
 <section class="section">
   <div class="card">
     <h3>Faltan</h3>
+
     <div class="countdown">
-      <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
-      <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
-      <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
-      <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
+      <div class="flip"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
+      <div class="flip"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
+      <div class="flip"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
+      <div class="flip"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
     </div>
 
     <a class="btn" target="_blank"
        href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+de+Esmeralda&dates=20260425T210000/20260426T020000">
       Agendar fecha 📅
+    </a>
+  </div>
+</section>
+
+<!-- VESTIMENTA -->
+<section class="section">
+  <div class="card">
+    <h3>Vestimenta</h3>
+    <p>Elegante · Total Black</p>
+    <img src="oufit.jfif" class="outfit-img">
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="section">
+  <div class="card">
+    <h3>Ubicación</h3>
+    <p><b>Crazy Night Party</b><br>Ricardo Rojas 765<br>Arrecifes, Buenos Aires</p>
+    <iframe class="map"
+      src="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes&output=embed"
+      loading="lazy"></iframe>
+    <a class="btn" target="_blank"
+      href="https://www.google.com/maps?q=Crazy+Night+Party+Ricardo+Rojas+765+Arrecifes">
+      Abrir en Google Maps 📍
+    </a>
+  </div>
+</section>
+
+<!-- REGALO -->
+<section class="section">
+  <div class="card">
+    <p>Tu presencia es muy importante,<br>pero si deseás hacerme un regalo,<br>este es mi alias:</p>
+    <h3>esme.riva.mp</h3>
+  </div>
+</section>
+
+<!-- CONFIRMAR -->
+<section class="section">
+  <div class="card">
+    <h3>Confirmar asistencia</h3>
+    <a class="btn"
+      href="https://wa.me/5492478543904?text=Hola%20😊%20Confirmo%20mi%20asistencia%20a%20tus%2015%20✨"
+      target="_blank">
+      Confirmar por WhatsApp 💬
     </a>
   </div>
 </section>
@@ -265,9 +303,9 @@ document.getElementById("name").addEventListener("click",e=>{
   if(!canConfetti) return;
   canConfetti=false;
 
-  const rect=e.target.getBoundingClientRect();
-  const x=rect.left+rect.width/2;
-  const y=rect.top+rect.height/2;
+  const r=e.target.getBoundingClientRect();
+  const x=r.left+r.width/2;
+  const y=r.top+r.height/2;
 
   for(let i=0;i<25;i++){
     const c=document.createElement("div");
@@ -279,7 +317,6 @@ document.getElementById("name").addEventListener("click",e=>{
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),1800);
   }
-
   setTimeout(()=>canConfetti=true,3000);
 });
 </script>
