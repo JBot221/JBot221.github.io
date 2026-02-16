@@ -114,6 +114,7 @@ body{
 .countdown{
   display:flex;
   justify-content:space-between;
+  margin-bottom:18px;
 }
 .flip{
   perspective:600px;
@@ -163,7 +164,7 @@ body{
 /* BUTTONS */
 .btn{
   display:inline-block;
-  margin-top:22px;
+  margin-top:10px;
   padding:14px 32px;
   background:linear-gradient(135deg,#3dd6b5,#c9b26d);
   color:#0f2f26;
@@ -205,24 +206,26 @@ body{
   <h2>MIS 15 AÑOS</h2>
   <h1>Esmeralda</h1>
   <p>25 · 04 · 21:00 hs</p>
-
-  <!-- BOTÓN AGENDAR -->
-  <a class="btn" target="_blank"
-     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+de+Esmeralda&dates=20260425T210000/20260426T020000&details=Fiesta+de+15+años+de+Esmeralda&location=Crazy+Night+Party,+Arrecifes">
-    Agendar fecha 📅
-  </a>
 </section>
 
 <!-- COUNTDOWN -->
 <section class="section">
   <div class="card">
     <h3>Faltan</h3>
+
     <div class="countdown">
       <div class="flip slow"><div class="flip-inner"><span id="days">0</span><small>Días</small></div></div>
       <div class="flip medium"><div class="flip-inner"><span id="hours">0</span><small>Horas</small></div></div>
       <div class="flip medium"><div class="flip-inner"><span id="minutes">0</span><small>Min</small></div></div>
       <div class="flip fast"><div class="flip-inner"><span id="seconds">0</span><small>Seg</small></div></div>
     </div>
+
+    <!-- BOTÓN AGENDAR DENTRO DEL CUADRO -->
+    <a class="btn" target="_blank"
+       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+de+Esmeralda&dates=20260425T210000/20260426T020000&details=Fiesta+de+15+años+de+Esmeralda&location=Crazy+Night+Party,+Arrecifes">
+      Agendar fecha 📅
+    </a>
+
   </div>
 </section>
 
@@ -343,5 +346,3 @@ for(let i=0;i<45;i++){
 
 </body>
 </html>
-
-
